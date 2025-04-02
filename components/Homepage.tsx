@@ -20,7 +20,7 @@ export default function Homepage() {
           priority
           loading='eager'
           sizes='100vw'
-          quality={80}
+          quality={100}
           className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             isHovering ? 'opacity-0' : 'opacity-100'
           }`}
@@ -32,7 +32,8 @@ export default function Homepage() {
           height={1080}
           loading='lazy'
           sizes='100vw'
-          quality={80}
+          priority
+          quality={100}
           className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             isHovering ? 'opacity-100' : 'opacity-0'
           }`}
