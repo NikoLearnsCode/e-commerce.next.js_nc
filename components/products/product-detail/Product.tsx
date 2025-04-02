@@ -131,7 +131,7 @@ export default function product({
                       src={product.images[activeImageIndex]}
                       alt={product.name}
                       width={1000}
-                      height={1000}
+                      height={800}
                       priority={true}
                       loading='eager'
                       className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh] '
