@@ -34,33 +34,39 @@ export const updateSession = async (request: NextRequest) => {
       }
     );
 
-    // Always use getUser() for security verification in middleware
-    // This makes a secure request to the Supabase Auth server to verify the user
-    const {data, error} = await supabase.auth.getUser();
-    // console.log('data', data);
+    // Refresh session if expired - Reads from cookies first, minimizing network calls
+    const {
+      data: {session},
+      error,
+    } = await supabase.auth.getSession();
+
     if (error) {
-      // console.error('Auth error in middleware:', error.message);
-      return response;
+      console.error('Session error in middleware:', error.message);
+      // Potentially handle specific errors, but generally allow request to proceed
+      // unless it's a critical auth failure preventing session refresh.
     }
 
-    // protected routes
-    if (request.nextUrl.pathname.startsWith('/protected') && !data.user) {
+    // NOTE: 'session' might be null even if the user was previously logged in,
+    // if the session expired and couldn't be refreshed.
+
+    // protected routes - check if session exists
+    if (request.nextUrl.pathname.startsWith('/protected') && !session) {
       return NextResponse.redirect(new URL('/sign-in', request.url));
     }
 
-    // Skydda profilsidor
-    if (request.nextUrl.pathname.startsWith('/profile') && !data.user) {
+    // Skydda profilsidor - check if session exists
+    if (request.nextUrl.pathname.startsWith('/profile') && !session) {
       return NextResponse.redirect(new URL('/sign-in', request.url));
     }
 
-    // Förhindra inloggade användare från att komma åt autentiseringssidor
+    // Förhindra inloggade användare (med aktiv session) från att komma åt autentiseringssidor
     if (
       (request.nextUrl.pathname === '/sign-in' ||
         request.nextUrl.pathname === '/sign-up' ||
         request.nextUrl.pathname === '/forgot-password') &&
-      data.user
+      session // Check if a session exists
     ) {
-      return NextResponse.redirect(new URL('/profile', request.url));
+      return NextResponse.redirect(new URL('/profile', request.url)); // Redirect logged-in users away from auth pages
     }
 
     return response;

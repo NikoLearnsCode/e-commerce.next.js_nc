@@ -1,4 +1,4 @@
-import type {Metadata} from 'next';
+import type {Metadata, Viewport} from 'next';
 import '@/assets/globals.css';
 
 import {Arimo, Syne} from 'next/font/google';
@@ -9,12 +9,16 @@ const arimo = Arimo({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-arimo',
+  display: 'swap',
+  preload: true,
 });
 
 const syne = Syne({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-syne',
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -24,6 +28,12 @@ export const metadata: Metadata = {
     icon: '/images/NC.svg',
     apple: '/images/NC.svg',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

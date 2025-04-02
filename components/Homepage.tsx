@@ -17,9 +17,10 @@ export default function Homepage() {
           alt='Landing-Page-Dam'
           width={1920}
           height={1080}
-      
           priority
-         
+          loading='eager'
+          sizes='100vw'
+          quality={80}
           className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             isHovering ? 'opacity-0' : 'opacity-100'
           }`}
@@ -29,14 +30,14 @@ export default function Homepage() {
           alt='Landing-Page-Herr'
           width={1920}
           height={1080}
-          priority
-       
+          loading='lazy'
+          sizes='100vw'
+          quality={80}
           className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             isHovering ? 'opacity-100' : 'opacity-0'
           }`}
         />
       </div>
-
 
       <div className='absolute left-0 top-2/3  w-full px-6 '>
         <div className='flex justify-center items-center space-x-5  font-syne uppercase '>
