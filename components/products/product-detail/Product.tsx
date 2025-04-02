@@ -83,6 +83,7 @@ export default function product({
                       width={700}
                       height={700}
                       priority={true}
+                      loading='eager'
                       className='w-full '
                     />
 
@@ -132,6 +133,7 @@ export default function product({
                       width={1000}
                       height={1000}
                       priority={true}
+                      loading='eager'
                       className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh] '
                     />
                   </div>
