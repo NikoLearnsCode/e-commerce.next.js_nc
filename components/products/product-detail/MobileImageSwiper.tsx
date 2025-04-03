@@ -90,24 +90,24 @@ export default function MobileImageSwiper({
             )}
             aria-label='Föregående bild'
           >
-            <ArrowLeft size={24} strokeWidth={1.25} />
+            <ArrowLeft size={20} strokeWidth={1.25} />
           </button>
           <button
             className={twMerge(
-              `${nextButtonClass} absolute right-2 top-1/2 -translate-y-1/2 hover:bg-gray-200 p-1 transition cursor-pointer  z-10`,
+              `${nextButtonClass} absolute right-1 top-1/2 -translate-y-1/2 hover:bg-gray-200 p-1 transition cursor-pointer  z-10`,
               isEnd
                 ? 'opacity-0 pointer-events-none'
                 : 'opacity-100'
             )}
             aria-label='Nästa bild'
           >
-            <ArrowRight size={24} strokeWidth={1.25} />
+            <ArrowRight size={20} strokeWidth={1.25} />
           </button>
         </>
       )}
       {/* Pagination Text Indicator */}
       {images.length > 1 && (
-        <div className='absolute bottom-2 left-2 justify-center mt-4 flex gap-2 z-10'>
+        <div className='absolute bottom-2 left-1 justify-center mt-4 flex gap-2 z-10'>
           <span className='text-base text-black bg-white/50 px-1 rounded'>
             {activeIndex + 1} / {images.length}
           </span>
