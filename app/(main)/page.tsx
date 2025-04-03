@@ -4,9 +4,8 @@ import Newsletter from '@/components/shared/Newsletter';
 // import InfiniteScrollProducts from '@/components/products/product-grid/InfiniteProductGrid';
 import Homepage from '@/components/Homepage';
 export const metadata: Metadata = {
-  title: 'Kläder för alla | NC',
-  description:
-    'Kläder för alla, från herr till dam. Vi erbjuder ett brett sortiment av kläder, skor och accessoarer.',
+  title: 'E-commerce Next.js 2025',
+  description: 'E-commerce Next.js 2025',
 };
 
 export default async function Page() {
@@ -16,6 +15,6 @@ export default async function Page() {
     <div className='w-full h-full'>
       <Homepage />
       <Newsletter />
-    </div>
+    </div> 
   );
 }
