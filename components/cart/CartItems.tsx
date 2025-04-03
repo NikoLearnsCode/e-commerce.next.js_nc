@@ -135,14 +135,13 @@ export default function CartItems({compact = false}: CartItemsProps) {
               layout
             >
               {/* Image section */}
-              <div className='relative sm:aspect-7/9'>
+              <div className='relative w-full h-full aspect-7/9'>
                 <Link href={`/${item.slug}`}>
                   {item.images[0] ? (
                     <Image
                       src={item.images[0]}
                       alt={item.name}
-                      height={600}
-                      width={400}
+                      fill
                       priority
                       className='object-cover  w-full h-full '
                     />

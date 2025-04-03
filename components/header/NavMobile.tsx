@@ -114,10 +114,10 @@ export default function MobileNav({navLinks}: MobileNavProps) {
         aria-label={isMenuOpen ? 'Stäng meny' : 'Öppna meny'}
       >
         <AlignJustify
-          size={24}
-          strokeWidth={2}
-          absoluteStrokeWidth
-          className='text-gray-800 '
+          size={28}
+          strokeWidth={1}
+          // absoluteStrokeWidth
+          className='text-black '
         />
 
         <span className='absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-500 bottom-full left-1/2 transform -translate-x-1/2 px-2 text-xs -mb-0.5 font-syne uppercase text-black whitespace-nowrap'>

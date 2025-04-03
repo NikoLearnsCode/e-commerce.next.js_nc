@@ -43,14 +43,13 @@ export function ProductListDesktop() {
             key={item.id}
             className={`flex gap-4 not-last:border-b pb-2 border-gray-200 ${removingItems[item.id] ? 'opacity-50' : ''}`}
           >
-            <div className='relative bg-gray-50 '>
+            <div className='relative bg-gray-50 w-25 h-35'>
               <Image
                 src={item.images[0]}
                 alt={item.name}
-                height={120}
-                width={100}
+                fill
                 priority
-                className='object-cover '
+                className='object-contain '
               />
             </div>
             <div className='flex-1 text-xs'>
@@ -106,17 +105,17 @@ export function ProductListMobile() {
             Visa
           </button>
         </span>
-        <div className='pt-4 flex gap-2 p-3 '>
+        <div className='pt-4  flex gap-2 p-3 '>
           {cartItems.map((item) => (
             <div key={item.id} className=' '>
               <div className='w-30 h-40 relative bg-gray-50'>
                 <Image
                   src={item.images[0]}
                   alt={item.name}
-                  height={160}
-                  width={120}
+                  fill
                   priority
-                  className='object-cover'
+                  sizes='auto'
+                  className='object-contain '
                 />
                 {item.quantity > 1 && (
                   <span className='absolute top-0 left-0 bg-white text-black px-2 py-1  text-xs'>

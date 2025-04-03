@@ -7,10 +7,10 @@ import {useState, useEffect} from 'react';
 export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
-  const primaryImage = '/images/LP2.avif';
+  const primaryImage = '/images/LP.DAM.avif';
   const secondaryImage = '/images/LP.HERR.avif';
   const primaryMobileImage = '/images/LP.MOBILE.DAM.jpg';
-  const secondaryMobileImage = '/images/LP.MOBILE.HERR.jpg';
+  const secondaryMobileImage = '/images/LP.HERR.MOBILE.jpg';
 
   useEffect(() => {
     const intervalId = setInterval(() => {

@@ -20,13 +20,13 @@ export default function DeliveryStep({onNext, initialData}: DeliveryStepProps) {
     resolver: zodResolver(deliverySchema),
     defaultValues: initialData || {
       deliveryMethod: '',
-      firstName: 'Salkin',
-      lastName: 'Niklas',
-      email: 'niklascarlsen@live.se',
-      phone: '0701234567',
-      address: 'Kungsgatan 1',
-      postalCode: '12345',
-      city: 'Stockholm',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      address: '',
+      postalCode: '',
+      city: '',
     },
   });
 

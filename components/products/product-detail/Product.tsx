@@ -4,20 +4,15 @@ import Image from 'next/image';
 import AddToCartButton from '@/components/products/product-detail/AddToCartButton';
 import {twMerge} from 'tailwind-merge';
 import {Product} from '@/lib/validators';
-import {useState} from 'react';
-import {
-  ArrowLeft,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Dot,
-} from 'lucide-react';
+import {useState, useEffect} from 'react';
+import {ChevronLeft, ChevronRight, Dot} from 'lucide-react';
 import ProductCarousel from '@/components/products/product-detail/CarouselOne';
 import Newsletter from '@/components/shared/Newsletter';
 import ProductTwo from './CarouselTwo';
 import {Truck, RefreshCcw, ShieldCheck} from 'lucide-react';
-
 import AccordionSection from '@/components/shared/Accordion';
+import MobileImageSwiper from './MobileImageSwiper';
+import type SwiperType from 'swiper';
 
 type ProductPageProps = {
   product: Product;
@@ -32,38 +27,13 @@ export default function product({
   categoryProducts = [],
   genderProducts = [],
 }: ProductPageProps) {
-  // const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-
-  // Hitta primärbild-index direkt
-  // const initialImageIndex =
-  //   !product.images || product.images.length === 0
-  //     ? 0
-  //     : product.images.findIndex((img) => img) || 0;
-
   const initialImageIndex = 0;
-
   const [activeImageIndex, setActiveImageIndex] = useState(initialImageIndex);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
-  // Funktion för att återställa kvantitet efter tillägg i varukorg
   const handleAddToCartSuccess = () => {
-    // setQuantity(1);
     setSelectedSize(null);
-  };
-
-  // Funktioner för navigation
-  const nextImage = () => {
-    if (product.images && product.images.length > 0) {
-      setActiveImageIndex((prev) => (prev + 1) % product.images.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (product.images && product.images.length > 0) {
-      setActiveImageIndex(
-        (prev) => (prev - 1 + product.images.length) % product.images.length
-      );
-    }
   };
 
   return (
@@ -71,62 +41,24 @@ export default function product({
       <div className='w-full mx-auto md:pt-4 md:pb-8 relative '>
         <div className='flex flex-col justify-center gap-4 md:gap-8 md:flex-row lg:gap-16 md:px-4'>
           {/* Vänster kolumn - bilder */}
-          <div className=' h-full md:sticky md:top-18 '>
+          <div className='h-full md:sticky md:top-18 '>
             {product.images && product.images.length > 0 ? (
-              <div className='flex flex-col justify-start  w-full  md:flex-row h-full '>
-                {/* Mobile */}
-                <div className='md:hidden relative'>
-                  <div className='relative w-full'>
-                    <Image
-                      src={product.images[activeImageIndex]}
-                      alt={product.name}
-                      width={700}
-                      height={700}
-                      priority={true}
-                      loading='eager'
-                      className='w-full '
-                    />
+              <div className='flex flex-col justify-start w-full md:flex-row h-full '>
+                {/* Mobile - Use the new component */}
+                <MobileImageSwiper
+                  images={product.images}
+                  productName={product.name}
+                  activeIndex={activeImageIndex}
+                  initialSlide={activeImageIndex}
+                  onSlideChange={setActiveImageIndex}
+                  setSwiperInstance={setSwiperInstance}
+                  className='md:hidden'
+                />
 
-                    {/* Navigationsknappar */}
-                    {product.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className='absolute left-2 top-1/2 -translate-y-1/2 hover:bg-gray-100 p-1 rounded-full transition cursor-pointer '
-                          aria-label='Föregående bild'
-                        >
-                          <ArrowLeft size={20} strokeWidth={1.25} />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className='absolute right-2 top-1/2 -translate-y-1/2 hover:bg-gray-100 p-1 rounded-full transition cursor-pointer '
-                          aria-label='Nästa bild'
-                        >
-                          <ArrowRight size={20} strokeWidth={1.25} />
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Pagination  */}
-                  {product.images.length > 1 && (
-                    <div className='absolute bottom-2 left-1/2 -translate-x-1/2 justify-center mt-4 flex gap-2'>
-                      {product.images.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveImageIndex(idx)}
-                          className={`w-2 h-2 rounded-full ${idx === activeImageIndex ? 'bg-gray-800' : 'bg-gray-300'}`}
-                          aria-label={`Gå till bild ${idx + 1}`}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Desktop */}
-                <div className='hidden md:flex md:flex-col items-start  lg:flex-row-reverse gap-2 h-full '>
-                  {/* Huvudbild */}
-                  <div className=' flex items-start  justify-start  w-full '>
+                {/* Desktop  */}
+                <div className='hidden md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full '>
+                  {/* Huvudbild (controlled by activeImageIndex) */}
+                  <div className=' flex items-start justify-start w-full '>
                     <Image
                       src={product.images[activeImageIndex]}
                       alt={product.name}
@@ -138,19 +70,19 @@ export default function product({
                     />
                   </div>
 
-                  {/* Thumbnails */}
+                  {/* Thumbnails (controls swiperInstance) */}
                   {product.images.length > 1 && (
-                    <div className='flex flex-row lg:flex-col  gap-4'>
+                    <div className='flex flex-row lg:flex-col gap-4'>
                       {product.images.map((img, idx) => (
                         <div
                           key={idx}
                           className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
-                          onMouseEnter={() => setActiveImageIndex(idx)}
-                          onClick={() => setActiveImageIndex(idx)}
+                          onMouseEnter={() => swiperInstance?.slideTo(idx)}
+                          onClick={() => swiperInstance?.slideTo(idx)}
                         >
                           <Image
                             src={img}
-                            alt={product.name}
+                            alt={`${product.name} - miniatyrbild ${idx + 1}`}
                             width={100}
                             height={150}
                             className='object-contain'
@@ -162,7 +94,7 @@ export default function product({
                 </div>
               </div>
             ) : (
-              <div className='w-full  bg-gray-200 flex items-center justify-center'>
+              <div className='w-full bg-gray-200 flex items-center justify-center md:hidden'>
                 <span className='text-gray-500'>Ingen bild tillgänglig</span>
               </div>
             )}
@@ -175,12 +107,6 @@ export default function product({
               <h1 className='text-xl md:text-2xl mt-4 font-semibold'>
                 {product.name}
               </h1>
-              {/* <p className='text-gray-600  text-base font-medium pt-1'>
-                {product.brand
-                  ? String(product.brand).charAt(0).toUpperCase() +
-                    String(product.brand).slice(1)
-                  : ''}
-              </p> */}
               <p className='text-gray-600 font-semibold uppercase font-syne text-sm  pt-1'>
                 {product.brand}
               </p>
@@ -188,7 +114,6 @@ export default function product({
 
             <div className='text-xl md:text-2xl my-2 sm:my-4 text-gray-800 font-semibold '>
               {product.price} kr
-              {/* <span className='text-base font-normal text-gray-600'>kr</span> */}
             </div>
             <div className='flex gap-1 items-center'>
               <span className='text-gray-600 font-light text-sm'>Färg:</span>
@@ -228,46 +153,11 @@ export default function product({
               </div>
             </div>
 
-            {/* Quantity */}
-            {/* <div className='flex flex-col  gap-2'>
-              <span className='text-gray-600 text-sm font-light'>Antal:</span>
-              <div className='flex items-center gap-3 border border-gray-200  w-fit'>
-                <button
-                  className={twMerge(
-                    'px-4 py-2',
-                    'focus:outline-none',
-                    quantity === 1
-                      ? 'opacity-50 cursor-not-allowed '
-                      : 'cursor-pointer'
-                  )}
-                  onClick={() =>
-                    quantity > 1 ? setQuantity(quantity - 1) : null
-                  }
-                  disabled={quantity === 1}
-                >
-                  <Minus strokeWidth={1} size={24} />
-                </button>
-                <span className='text-gray-600 text-lg font-light'>
-                  {quantity}
-                </span>
-                <button
-                  className={twMerge(
-                    'px-4 py-2',
-                    'focus:outline-none',
-                    'cursor-pointer'
-                  )}
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Plus strokeWidth={1} size={24} />
-                </button>
-              </div>
-            </div> */}
-
             <AddToCartButton
               product={product}
               selectedSize={selectedSize}
               onAddSuccess={handleAddToCartSuccess}
-              className='w-full h-11 mt-2 text-sm font-semibold transition duration-300 rounded-none'
+              className='w-full h-13 mt-2 text-sm font-semibold transition duration-300 rounded-none'
               disabled={!selectedSize}
             />
 
@@ -276,7 +166,7 @@ export default function product({
                 title='Om produkten'
                 className='text-base font-medium '
               >
-                <p className='text-gray-600 font-normal text-sm '>
+                <p className='text-gray-600 font-normal text-base '>
                   {product.description}
                 </p>
               </AccordionSection>
@@ -288,7 +178,7 @@ export default function product({
                 {product.specs.map((spec) => (
                   <span
                     key={spec}
-                    className='text-gray-600 text-sm font-normal flex items-center'
+                    className='text-gray-600 text-base font-normal flex items-center'
                   >
                     <Dot size={22} className='text-black' />
                     {spec}
