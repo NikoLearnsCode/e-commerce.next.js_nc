@@ -23,7 +23,7 @@ export default async function ProfilePage() {
   return (
     <div className=' py-8 font-syne '>
       <h1 className='text-4xl  mb-12  border-black w-fit '>Mitt konto</h1>
-      <div className='flex flex-col space-y-6'>
+      <div className='flex flex-col justify-center items-center space-y-6'>
         <Link
           href='/profile/information'
           className='text-lg font-normal uppercase hover:underline w-fit'
