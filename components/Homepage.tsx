@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import {Link} from '@/components/shared/link';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
@@ -11,14 +11,6 @@ export default function Homepage() {
   const secondaryImage = '/images/LP.HERR.avif';
   const primaryMobileImage = '/images/LP.MOBILE.DAM.jpg';
   const secondaryMobileImage = '/images/LP.HERR.MOBILE.jpg';
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentView((prevView) => (prevView === 'dam' ? 'herr' : 'dam'));
-    }, 6000);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <div className='relative'>
@@ -32,7 +24,7 @@ export default function Homepage() {
           loading='eager'
           sizes='100vw'
           quality={100}
-          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'dam' ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -45,7 +37,7 @@ export default function Homepage() {
           sizes='100vw'
           priority
           quality={100}
-          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -58,7 +50,7 @@ export default function Homepage() {
           loading='eager'
           sizes='100vw'
           quality={100}
-          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'dam' ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -71,7 +63,7 @@ export default function Homepage() {
           sizes='100vw'
           priority
           quality={100}
-          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -83,8 +75,9 @@ export default function Homepage() {
             variant='secondaryTwo'
             href='/c/dam'
             className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              currentView === 'dam' ? 'bg-white' : ''
+              currentView === 'dam' ? '' : ''
             }`}
+            onMouseEnter={() => setCurrentView('dam')}
           >
             dam
           </Link>
@@ -92,8 +85,9 @@ export default function Homepage() {
             variant='primaryTwo'
             href='/c/herr'
             className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              currentView === 'herr' ? 'bg-black' : ''
+              currentView === 'herr' ? '' : ''
             }`}
+            onMouseEnter={() => setCurrentView('herr')}
           >
             herr
           </Link>
