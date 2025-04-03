@@ -55,7 +55,7 @@ export default function OrdersClientContent({
       </span>
 
       {orders.length === 0 ? (
-        <p className='text-base text-gray-600'>
+        <p className='mx-auto max-w-md px-4 text-base text-gray-600'>
           Du har inte lagt några ordrar än.
         </p>
       ) : (
