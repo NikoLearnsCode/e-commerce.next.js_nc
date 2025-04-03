@@ -108,15 +108,15 @@ export default function SearchBar() {
               autoComplete='off'
             />
             <div
-              className='absolute right-6 bottom-1.5  '
+              className='absolute right-1 bottom-1  '
               aria-label='Close search'
             >
               <MotionCloseX
                 onClick={() => setIsExpanded(false)}
                 size={20}
                 strokeWidth={1}
-                className='z-50'
-                withTranslate={true}
+                className='z-40'
+              
               />
             </div>
           </motion.form>

@@ -161,8 +161,8 @@ export default function FilterPanel({
           >
             <div className='flex flex-col h-full justify-between py-10 px-10'>
               {/* --- Titel och stängknapp --- */}
-              <div className='flex items-center justify-between'>
-                <h1 className='text-base font-semibold uppercase font-syne'>
+              <div className='flex items-center justify-between mb-10'>
+                <h1 className='text-base font-semibold uppercase font-syne '>
                   Filtrera och ordna
                 </h1>
                 <MotionCloseX

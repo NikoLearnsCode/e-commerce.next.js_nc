@@ -2,12 +2,23 @@
 
 import Image from 'next/image';
 import {Link} from '@/components/shared/link';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+
 export default function Homepage() {
-  const [isHovering, setIsHovering] = useState(false);
+  const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
   const primaryImage = '/images/LP2.avif';
   const secondaryImage = '/images/LP.HERR.avif';
+  const primaryMobileImage = '/images/LP.MOBILE.DAM.jpg';
+  const secondaryMobileImage = '/images/LP.MOBILE.HERR.jpg';
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentView((prevView) => (prevView === 'dam' ? 'herr' : 'dam'));
+    }, 6000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className='relative'>
@@ -21,8 +32,8 @@ export default function Homepage() {
           loading='eager'
           sizes='100vw'
           quality={100}
-          className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
-            isHovering ? 'opacity-0' : 'opacity-100'
+          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+            currentView === 'dam' ? 'opacity-100' : 'opacity-0'
           }`}
         />
         <Image
@@ -30,12 +41,38 @@ export default function Homepage() {
           alt='Landing-Page-Herr'
           width={1920}
           height={1080}
-          loading='lazy'
+          loading='eager'
           sizes='100vw'
           priority
           quality={100}
-          className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
-            isHovering ? 'opacity-100' : 'opacity-0'
+          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+            currentView === 'herr' ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+        <Image
+          src={primaryMobileImage}
+          alt='Landing-Page-Dam-Mobil'
+          width={1920}
+          height={1080}
+          priority
+          loading='eager'
+          sizes='100vw'
+          quality={100}
+          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+            currentView === 'dam' ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+        <Image
+          src={secondaryMobileImage}
+          alt='Landing-Page-Herr-Mobil'
+          width={1920}
+          height={1080}
+          loading='eager'
+          sizes='100vw'
+          priority
+          quality={100}
+          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-1000 ${
+            currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
         />
       </div>
@@ -45,9 +82,8 @@ export default function Homepage() {
           <Link
             variant='secondaryTwo'
             href='/c/dam'
-            onMouseEnter={() => setIsHovering(false)}
             className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              isHovering ? '' : 'bg-white'
+              currentView === 'dam' ? 'bg-white' : ''
             }`}
           >
             dam
@@ -55,9 +91,8 @@ export default function Homepage() {
           <Link
             variant='primaryTwo'
             href='/c/herr'
-            onMouseEnter={() => setIsHovering(true)}
             className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              isHovering ? 'bg-black' : ''
+              currentView === 'herr' ? 'bg-black' : ''
             }`}
           >
             herr
