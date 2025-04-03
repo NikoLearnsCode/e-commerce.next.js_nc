@@ -52,8 +52,8 @@ export default function Homepage() {
         <Image
           src={primaryMobileImage}
           alt='Landing-Page-Dam-Mobil'
-          width={1920}
-          height={1080}
+          width={820}
+          height={880}
           priority
           loading='eager'
           sizes='100vw'
@@ -65,8 +65,8 @@ export default function Homepage() {
         <Image
           src={secondaryMobileImage}
           alt='Landing-Page-Herr-Mobil'
-          width={1920}
-          height={1080}
+          width={820}
+          height={880}
           loading='eager'
           sizes='100vw'
           priority
