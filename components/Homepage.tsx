@@ -20,7 +20,7 @@ export default function Homepage() {
           alt='Landing-Page-Dam'
           width={1920}
           height={1080}
-          priority
+          priority={true}
           loading='eager'
           sizes='100vw'
           quality={100}
@@ -35,7 +35,7 @@ export default function Homepage() {
           height={1080}
           loading='eager'
           sizes='100vw'
-          priority
+          priority={true}
           quality={100}
           className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
@@ -46,7 +46,7 @@ export default function Homepage() {
           alt='Landing-Page-Dam-Mobil'
           width={820}
           height={880}
-          priority
+          priority={true}
           loading='eager'
           sizes='100vw'
           quality={100}
@@ -61,7 +61,7 @@ export default function Homepage() {
           height={880}
           loading='eager'
           sizes='100vw'
-          priority
+          priority={true}
           quality={100}
           className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'

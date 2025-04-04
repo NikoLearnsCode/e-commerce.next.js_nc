@@ -43,7 +43,7 @@ export default function ProductGrid({
         }`}
       >
         {products.map((product) => (
-          <Cards key={product.id} product={product} priorityLoading={true} />
+          <Cards key={product.id} product={product} priorityLoading={true}  />
         ))}
       </div>
     </div>

@@ -66,8 +66,8 @@ export default function Cards({
                 src={secondaryImage || ''}
                 alt={product.name}
                 fill
-                priority={false}
-                loading='lazy'
+                priority={priorityLoading}
+                loading={priorityLoading ? 'eager' : 'lazy'}
                 className='object-cover '
                 sizes='(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 50vw'
               />
@@ -82,7 +82,9 @@ export default function Cards({
           {product.brand}
         </p>
         <p className='text-sm sm-text-base'>{product.price.toFixed(2)} kr</p>
-        <p className='text-xs font-medium uppercase font-syne'>{product.color}</p>
+        <p className='text-xs font-medium uppercase font-syne'>
+          {product.color}
+        </p>
       </div>
     </div>
   );

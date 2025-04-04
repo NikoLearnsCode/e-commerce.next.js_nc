@@ -14,6 +14,7 @@ import type SwiperType from 'swiper';
 type ProductCarouselProps = {
   products: Product[];
   title?: string;
+  priorityLoading?: boolean;
   id?: string;
 };
 
@@ -21,6 +22,7 @@ export default function ProductTwo({
   products,
   title = 'Du kanske också gillar',
   id = 'carousel-two',
+
 }: ProductCarouselProps) {
   if (products.length === 0) {
     return null; 
