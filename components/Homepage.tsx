@@ -33,10 +33,8 @@ export default function Homepage() {
           alt='Landing-Page-Herr'
           width={1920}
           height={1080}
-          loading='eager'
+          loading='lazy'
           sizes='100vw'
-          priority={true}
-          quality={100}
           className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
@@ -59,10 +57,8 @@ export default function Homepage() {
           alt='Landing-Page-Herr-Mobil'
           width={820}
           height={880}
-          loading='eager'
+          loading='lazy'
           sizes='100vw'
-          priority={true}
-          quality={100}
           className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
