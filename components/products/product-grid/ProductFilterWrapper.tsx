@@ -2,7 +2,7 @@
 
 import {useEffect, useState, useMemo, useCallback} from 'react';
 import {Product} from '@/lib/validators';
-import {useSearchParams, usePathname, useRouter} from 'next/navigation';
+import {useSearchParams, usePathname} from 'next/navigation';
 import Link from 'next/link';
 import {ChevronRight} from 'lucide-react';
 import ProductGrid from '@/components/products/product-grid/ProductGrid';
@@ -29,9 +29,8 @@ export default function ProductFilterWrapper({
   const pathname = usePathname();
   const pathParts = pathname.split('/');
 
-
   const isGenderPage = pathParts.length === 3 && pathParts[1] === 'c';
-  const isCategoryPage = pathParts.length === 4 && pathParts[1] === 'c' ;
+  const isCategoryPage = pathParts.length === 4 && pathParts[1] === 'c';
   const currentGender = isGenderPage || isCategoryPage ? pathParts[2] : null;
 
   // Plockar fram unika kategorier
@@ -112,7 +111,6 @@ export default function ProductFilterWrapper({
     const handleEscapeKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsFilterOpen(false);
-       
       }
     };
     document.addEventListener('keydown', handleEscapeKey);
@@ -151,7 +149,9 @@ export default function ProductFilterWrapper({
           </Link>
           <ChevronRight size={13} className='text-gray-500' />
           <h2 className='text-sm font-medium  w-fit  uppercase '>
-            {genderCategoryTitle === 'klanningar' ? 'klänningar' : genderCategoryTitle}
+            {genderCategoryTitle === 'klanningar'
+              ? 'klänningar'
+              : genderCategoryTitle}
           </h2>
         </div>
       )}

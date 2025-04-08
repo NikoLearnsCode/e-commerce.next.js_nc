@@ -67,7 +67,7 @@ export default function FilterPanel({
     };
   }, [products]);
 
-  // Hjälpfunktion som sorterar storlekar 
+  // Hjälpfunktion som sorterar storlekar
   function sortSizes(sizes: string[]) {
     const sizeOrder: {[key: string]: number} = {
       XXS: 0,
@@ -102,7 +102,7 @@ export default function FilterPanel({
     return [...text, ...numeric];
   }
 
-  // Checkbox och radioknapp-hantering 
+  // Checkbox och radioknapp-hantering
   const toggleColor = (color: string) => {
     setSelectedColors((prev) =>
       prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
@@ -126,8 +126,6 @@ export default function FilterPanel({
     setSortOrder(null);
     router.push(pathname);
   };
-
-
 
   const applyFilters = () => {
     const params = new URLSearchParams();
@@ -287,8 +285,7 @@ export default function FilterPanel({
   );
 }
 
-
-  // hjälpkomponenter för checkbox och radio
+// hjälpkomponenter för checkbox och radio
 function CheckboxOption({
   id,
   label,
@@ -355,7 +352,7 @@ function RadioOption({
           id={id}
           checked={checked}
           onChange={onChange}
-          className='sr-only' 
+          className='sr-only'
         />
         <div
           className={`w-5 h-5  border ${checked ? ' border-black' : 'border-gray-300'} flex items-center justify-center`}

@@ -1,7 +1,6 @@
 'use client';
 import {Product} from '@/lib/validators';
-import {ArrowRight, Filter} from 'lucide-react';
-import {useSearchParams, usePathname} from 'next/navigation';
+import {useSearchParams} from 'next/navigation';
 import {useMemo} from 'react';
 
 interface FilterBarProps {
@@ -13,14 +12,12 @@ interface FilterBarProps {
 export default function FilterBar({onToggleFilter, products}: FilterBarProps) {
   const searchParams = useSearchParams();
 
-
   // Check if any filters are active
   const activeFilters = useMemo(() => {
     const colorParam = searchParams.get('color');
     const sizeParam = searchParams.get('size');
     const sortParam = searchParams.get('sort');
 
-   
     const countableParams = [colorParam, sizeParam, sortParam];
 
     return {
@@ -28,8 +25,6 @@ export default function FilterBar({onToggleFilter, products}: FilterBarProps) {
       count: countableParams.filter(Boolean).length,
     };
   }, [searchParams]);
-
-
 
   return (
     <div className='sticky top-14 w-full bg-white py-4 pb-6 px-6 sm:px-8 text-base flex justify-between items-center z-1'>

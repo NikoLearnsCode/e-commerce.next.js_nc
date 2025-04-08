@@ -47,14 +47,14 @@ export async function getProductsByCategoryAndGender(
   const supabase = await createClient();
 
   // Specificera endast nödvändiga kolumner
-  const selectColumns = 'id, slug, name, price, brand, color, images, sizes';
+  const selectColumns = 'id, slug, name, price, brand, color, images, sizes, category, gender';
 
-  let query = supabase.from('products').select(selectColumns); // Använd specificerade kolumner
+  let query = supabase.from('products').select(selectColumns);
 
   if (gender) {
     query = query.eq('gender', gender);
   }
-  // console.log('query', gender);
+
 
   if (category) {
     query = query.eq('category', category);
@@ -65,10 +65,9 @@ export async function getProductsByCategoryAndGender(
     query = query.limit(limit);
   }
 
-  // console.log('query', category);
+
   const {data, error} = await query;
 
-  // console.log('error', query);
 
   if (error) {
     console.error(`Error fetching products by category and gender:`, error);
@@ -106,7 +105,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
   }
 }
 
-// Ny funktion för att hämta alla produktdetaljer via RPC
+// Hämta alla produktdetaljer via RPC
 export async function getProductDetailsBySlug(slug: string): Promise<{
   product: Product | null;
   categoryProducts: Product[];
@@ -115,7 +114,7 @@ export async function getProductDetailsBySlug(slug: string): Promise<{
   const supabase = await createClient();
 
   const {data, error} = await supabase.rpc('get_product_details', {
-    product_slug: slug, // Namnet på argumentet i SQL-funktionen
+    product_slug: slug, // Argumentet i SQL-funktionen
   });
 
   if (error) {
@@ -127,9 +126,6 @@ export async function getProductDetailsBySlug(slug: string): Promise<{
     return {product: null, categoryProducts: [], genderProducts: []};
   }
 
-  // Supabase RPC returnerar datan direkt i 'data'-fältet.
-  // Vi antar att JSON-strukturen matchar det vi definierade i SQL.
-  // Vi behöver kanske type assertion här om TS klagar, eller bättre validering.
   const result = data as {
     product: Product | null;
     categoryProducts: Product[];
@@ -144,7 +140,7 @@ export async function getProductDetailsBySlug(slug: string): Promise<{
   };
 }
 
-// Paging och infinite scroll
+// Pagination och infinite scroll (EJ I BRUK)
 export async function getProductsForInfiniteScroll(
   limit: number = 8,
   lastId: string | null = null,
