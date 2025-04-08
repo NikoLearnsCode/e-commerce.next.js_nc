@@ -12,7 +12,6 @@ export async function getProducts(): Promise<Product[]> {
     .select('*')
     .order('name');
 
-
   if (error) {
     console.error('Error fetching products', error);
     return [];
@@ -104,6 +103,44 @@ export async function searchProducts(query: string): Promise<Product[]> {
   }
 }
 
+// Ny funktion för att hämta alla produktdetaljer via RPC
+export async function getProductDetailsBySlug(slug: string): Promise<{
+  product: Product | null;
+  categoryProducts: Product[];
+  genderProducts: Product[];
+}> {
+  const supabase = await createClient();
+
+  const {data, error} = await supabase.rpc('get_product_details', {
+    product_slug: slug, // Namnet på argumentet i SQL-funktionen
+  });
+
+  if (error) {
+    console.error(
+      `Error calling RPC get_product_details for slug ${slug}:`,
+      error
+    );
+    // Returnera ett tomt/null-state vid fel
+    return {product: null, categoryProducts: [], genderProducts: []};
+  }
+
+  // Supabase RPC returnerar datan direkt i 'data'-fältet.
+  // Vi antar att JSON-strukturen matchar det vi definierade i SQL.
+  // Vi behöver kanske type assertion här om TS klagar, eller bättre validering.
+  const result = data as {
+    product: Product | null;
+    categoryProducts: Product[];
+    genderProducts: Product[];
+  };
+
+  // Säkerställ att arrayerna inte är null (om RPC mot förmodan skulle returnera det)
+  return {
+    product: result.product || null,
+    categoryProducts: result.categoryProducts || [],
+    genderProducts: result.genderProducts || [],
+  };
+}
+
 // Paging och infinite scroll
 export async function getProductsForInfiniteScroll(
   limit: number = 8,
@@ -112,7 +149,6 @@ export async function getProductsForInfiniteScroll(
   order: 'asc' | 'desc' = 'asc'
 ): Promise<{products: Product[]; hasMore: boolean}> {
   const supabase = await createClient();
-
 
   let query = supabase
     .from('products')
