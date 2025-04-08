@@ -4,6 +4,7 @@ import '@/assets/globals.css';
 import {Arimo, Syne} from 'next/font/google';
 import AuthProvider from '@/context/AuthProvider';
 import {CartProvider} from '@/context/CartProvider';
+import {SpeedInsights} from '@vercel/speed-insights/next';
 
 const arimo = Arimo({
   weight: ['400', '500', '600', '700'],
@@ -41,7 +42,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang='sv'>
       <body className={`${arimo.variable} ${syne.variable} ${arimo.className}`}>
         <AuthProvider>
-          <CartProvider>{children}</CartProvider>
+          <CartProvider>
+            <SpeedInsights />
+            {children}
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>
