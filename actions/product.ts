@@ -46,7 +46,10 @@ export async function getProductsByCategoryAndGender(
 ): Promise<Product[]> {
   const supabase = await createClient();
 
-  let query = supabase.from('products').select('*');
+  // Specificera endast nödvändiga kolumner
+  const selectColumns = 'id, slug, name, price, brand, color, images, sizes';
+
+  let query = supabase.from('products').select(selectColumns); // Använd specificerade kolumner
 
   if (gender) {
     query = query.eq('gender', gender);
