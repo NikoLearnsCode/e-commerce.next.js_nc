@@ -97,7 +97,7 @@ export default function ProductTwo({
             <ProductCard
               product={product}
               priorityLoading={false}
-              
+              interactionMode='carouselItem'
             />
           </SwiperSlide>
         ))}

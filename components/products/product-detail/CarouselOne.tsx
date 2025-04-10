@@ -3,16 +3,14 @@ import {Product} from '@/lib/validators';
 
 import {ArrowLeft, ArrowRight, MoveLeft, MoveRight} from 'lucide-react';
 
-
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
 import type SwiperType from 'swiper';
 
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import ProductCard from '../product-grid/ProductCard';
-import { useState} from 'react';
+import {useState} from 'react';
 
 type ProductCarouselProps = {
   products: Product[];
@@ -26,9 +24,8 @@ export default function ProductCarousel({
   id = 'carousel-one',
 }: ProductCarouselProps) {
   if (products.length === 0) {
-    return null; 
+    return null;
   }
-
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -37,8 +34,6 @@ export default function ProductCarousel({
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
-
-  
 
   const prevButtonClass = `${id}-prev`;
   const nextButtonClass = `${id}-next`;
@@ -58,7 +53,7 @@ export default function ProductCarousel({
             aria-label='Föregående'
             disabled={isBeginning}
           >
-           <ArrowLeft  strokeWidth={1.25} className='  h-5 w-5' />
+            <ArrowLeft strokeWidth={1.25} className='  h-5 w-5' />
           </button>
 
           <button
@@ -68,7 +63,7 @@ export default function ProductCarousel({
             aria-label='Nästa'
             disabled={isEnd}
           >
-            <ArrowRight  strokeWidth={1.25} className=' h-5 w-5' />
+            <ArrowRight strokeWidth={1.25} className=' h-5 w-5' />
           </button>
         </div>
       </div>
@@ -105,7 +100,7 @@ export default function ProductCarousel({
             <ProductCard
               product={product}
               priorityLoading={false}
-             
+              interactionMode='carouselItem'
             />
           </SwiperSlide>
         ))}
