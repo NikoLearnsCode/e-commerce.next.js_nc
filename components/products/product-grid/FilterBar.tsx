@@ -27,7 +27,7 @@ export default function FilterBar({onToggleFilter, products}: FilterBarProps) {
   }, [searchParams]);
 
   return (
-    <div className='sticky top-14 w-full bg-white py-4 pb-6 px-6 sm:px-8 text-base flex justify-between items-center z-1'>
+    <div className='sticky top-14 w-full bg-white py-4 pb-6 px-6 sm:px-8 text-base flex justify-between items-center z-20'>
       <button
         onClick={onToggleFilter}
         className='flex items-center gap-2 outline-none hover:text-gray-700 transition-colors cursor-pointer'

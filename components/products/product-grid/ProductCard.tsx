@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {Product} from '@/lib/validators';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
-import { ChevronLeft, ChevronRight} from 'lucide-react';
+import {ChevronLeft, ChevronRight} from 'lucide-react';
 import {twMerge} from 'tailwind-merge';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -47,7 +47,7 @@ export default function ProductCard({
             <Swiper
               modules={[Navigation]}
               slidesPerView={1}
-              spaceBetween={0}
+              spaceBetween={1}
               loop={true}
               allowTouchMove={false}
               navigation={{
