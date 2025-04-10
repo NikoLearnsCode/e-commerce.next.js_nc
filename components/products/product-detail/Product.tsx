@@ -4,15 +4,22 @@ import Image from 'next/image';
 import AddToCartButton from '@/components/products/product-detail/AddToCartButton';
 import {twMerge} from 'tailwind-merge';
 import {Product} from '@/lib/validators';
-import {useState, useEffect} from 'react';
-import {ChevronLeft, ChevronRight, Dot} from 'lucide-react';
-import ProductCarousel from '@/components/products/product-detail/CarouselOne';
+import {useState} from 'react';
+import {Dot} from 'lucide-react';
 import Newsletter from '@/components/shared/Newsletter';
-import ProductTwo from './CarouselTwo';
 import {Truck, RefreshCcw, ShieldCheck} from 'lucide-react';
 import AccordionSection from '@/components/shared/Accordion';
 import MobileImageSwiper from './MobileImageSwiper';
 import type SwiperType from 'swiper';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the carousels
+const ProductCarousel = dynamic(
+  () => import('@/components/products/product-detail/CarouselOne')
+);
+const ProductTwo = dynamic(
+  () => import('@/components/products/product-detail/CarouselTwo')
+);
 
 type ProductPageProps = {
   product: Product;
