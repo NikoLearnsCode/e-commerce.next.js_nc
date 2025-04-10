@@ -62,7 +62,7 @@ export default function MobileImageSwiper({
         }}
         onSlideChange={(swiper) => onSlideChange(swiper.activeIndex)}
         onSwiper={setSwiperInstance}
-        className='aspect-7/9' // Apply aspect ratio here
+        className='aspect-7/9'
         initialSlide={initialSlide}
       >
         {images.map((imgSrc, idx) => (
@@ -71,6 +71,7 @@ export default function MobileImageSwiper({
               src={imgSrc}
               alt={`${productName} - bild ${idx + 1}`}
               fill
+              sizes='(max-width: 767px) 100vw, 0px'
               priority={idx === initialSlide} // Prioritize initial image
               loading={idx === initialSlide ? 'eager' : 'lazy'} // Lazy load others
               className='object-cover w-full h-full'
@@ -83,10 +84,8 @@ export default function MobileImageSwiper({
         <>
           <button
             className={twMerge(
-              `${prevButtonClass} absolute left-2 top-1/2 -translate-y-1/2 hover:bg-gray-200 p-1 transition cursor-pointer z-10`,
-              isBeginning
-                ? 'opacity-0 pointer-events-none'
-                : 'opacity-70 hover:opacity-100'
+              `${prevButtonClass} absolute right-10 bottom-2  hover:bg-gray-200 p-1 transition cursor-pointer z-10`,
+              isBeginning ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
             aria-label='Föregående bild'
           >
@@ -94,10 +93,8 @@ export default function MobileImageSwiper({
           </button>
           <button
             className={twMerge(
-              `${nextButtonClass} absolute right-1 top-1/2 -translate-y-1/2 hover:bg-gray-200 p-1 transition cursor-pointer  z-10`,
-              isEnd
-                ? 'opacity-0 pointer-events-none'
-                : 'opacity-100'
+              `${nextButtonClass} absolute right-2 bottom-2 hover:bg-gray-200 p-1 transition cursor-pointer  z-10`,
+              isEnd ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
             aria-label='Nästa bild'
           >
@@ -107,8 +104,8 @@ export default function MobileImageSwiper({
       )}
       {/* Pagination Text Indicator */}
       {images.length > 1 && (
-        <div className='absolute bottom-2 left-1 justify-center mt-4 flex gap-2 z-10'>
-          <span className='text-base text-black bg-white/50 px-1 rounded'>
+        <div className='absolute bottom-2 left-2 justify-center mt-4 flex gap-2 z-10'>
+          <span className='text-base font-medium  text-gray-700  px-1 '>
             {activeIndex + 1} / {images.length}
           </span>
         </div>

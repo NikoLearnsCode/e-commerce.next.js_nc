@@ -22,10 +22,9 @@ export default function ProductTwo({
   products,
   title = 'Du kanske också gillar',
   id = 'carousel-two',
-
 }: ProductCarouselProps) {
   if (products.length === 0) {
-    return null; 
+    return null;
   }
 
   const [isBeginning, setIsBeginning] = useState(true);
@@ -95,7 +94,11 @@ export default function ProductTwo({
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCard product={product} priorityLoading={false} />
+            <ProductCard
+              product={product}
+              priorityLoading={false}
+              
+            />
           </SwiperSlide>
         ))}
       </Swiper>

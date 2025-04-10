@@ -43,7 +43,7 @@ export default function product({
           {/* Vänster kolumn - bilder */}
           <div className='h-full md:sticky md:top-18 '>
             {product.images && product.images.length > 0 ? (
-              <div className='flex flex-col justify-start w-full md:flex-row h-full '>
+              <div className='flex flex-col justify-start w md:flex-row '>
                 {/* Mobile - Use the new component */}
                 <MobileImageSwiper
                   images={product.images}

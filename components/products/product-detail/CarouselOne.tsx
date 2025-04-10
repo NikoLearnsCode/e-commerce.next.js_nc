@@ -102,7 +102,11 @@ export default function ProductCarousel({
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCard product={product} priorityLoading={false} />
+            <ProductCard
+              product={product}
+              priorityLoading={false}
+             
+            />
           </SwiperSlide>
         ))}
       </Swiper>
