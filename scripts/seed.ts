@@ -1,8 +1,8 @@
 // Ladda miljövariabler från .env.local
 import * as dotenv from 'dotenv';
-dotenv.config({path: '.env.local'});
+dotenv.config({ path: '.env.local' });
 
-import {createClient} from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -214,14 +214,14 @@ const baseProducts = [
 // Funktion för att hämta befintliga produkter
 async function getExistingProductsInfo() {
   // Hämta alla befintliga slug och name värden
-  const {data, error} = await supabase
+  const { data, error } = await supabase
     .from('products')
     .select('slug, name')
-    .order('created_at', {ascending: false});
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error('Fel vid hämtning av befintliga produkter:', error);
-    return {slugs: [], names: [], highestIndex: 0};
+    return { slugs: [], names: [], highestIndex: 0 };
   }
 
   // Extrahera unika slugs och names
@@ -240,7 +240,7 @@ async function getExistingProductsInfo() {
     }
   });
 
-  return {slugs, names, highestIndex};
+  return { slugs, names, highestIndex };
 }
 
 // Funktion som skapar en ny produkt baserat på originalet med unika värden
@@ -277,9 +277,7 @@ const createDuplicateWithUniqueIds = (
     suffix++;
     newSlug = `${product.slug}-${suffix}`;
   }
-
-  // Lägg till den nya sluggen i listan så att vi kan kontrollera mot den också
-  existingSlugs.push(newSlug);
+  existingSlugs.push(newSlug); // Lägg till så vi inte får krock
 
   return {
     ...product,
@@ -300,8 +298,8 @@ async function seedProducts(count: number = 50) {
     names: existingNames,
     highestIndex,
   } = await getExistingProductsInfo();
-  const startIndex = highestIndex + 1;
 
+  const startIndex = highestIndex + 1;
   console.log(
     `Hittade ${existingSlugs.length} befintliga produkter. Startar från index ${startIndex}`
   );
@@ -322,28 +320,25 @@ async function seedProducts(count: number = 50) {
     productRows.push(...basesToAdd);
   }
 
-  // Beräkna hur många ytterligare produkter som behöver skapas
+  // Räkna ut hur många fler produkter vi ska skapa
   const remainingToCreate = count - basesToAdd.length;
 
   if (remainingToCreate > 0) {
     console.log(`Skapar ${remainingToCreate} ytterligare produktvarianter`);
-
-    // Kopiera den befintliga slug-listan så vi kan lägga till nya slugs när de skapas
-    const updatedSlugs = [...existingSlugs];
+    // Kopiera listan av slugs så vi kan uppdatera allteftersom
+    const updatedSlugs = [...existingSlugs, ...basesToAdd.map((p) => p.slug)];
 
     // Generera ytterligare produkter baserat på originalen
     for (let i = 0; i < remainingToCreate; i++) {
-      // Välj en slumpmässig basprodukt att duplicera
-      const randomIndex = Math.floor(Math.random() * baseProducts.length);
-      const baseProd = baseProducts[randomIndex];
+      // Byt ut slumpen mot round-robin för jämnare fördelning:
+      const baseProd = baseProducts[i % baseProducts.length];
 
-      // Skapa en ny variant med unika identifierare
+      // Skapa ny variant med unika identifierare
       const duplicateProduct = createDuplicateWithUniqueIds(
         baseProd,
         startIndex + i,
         updatedSlugs
       );
-
       productRows.push(duplicateProduct);
     }
   }
@@ -354,7 +349,7 @@ async function seedProducts(count: number = 50) {
   }
 
   // Spara produkter i databasen
-  const {data, error} = await supabase
+  const { data, error } = await supabase
     .from('products')
     .insert(productRows)
     .select();
@@ -369,7 +364,7 @@ async function seedProducts(count: number = 50) {
 
 (async () => {
   try {
-    const numberOfProducts = process.argv[2] ? parseInt(process.argv[2]) : 60;
+    const numberOfProducts = process.argv[2] ? parseInt(process.argv[2]) : 16;
     await seedProducts(numberOfProducts);
     console.log('✅ Seeding slutfört!');
   } catch (error) {
