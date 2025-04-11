@@ -55,7 +55,7 @@ export default function ProductCard({
 
   if (interactionMode === 'carouselItem') {
     return (
-      <div className='flex flex-col w-full h-full pb-6 group'>
+      <div className='flex flex-col relative w-full h-full pb-6 group'>
         <div className='w-full relative h-full bg-white'>
           <Link
             href={`/${product.slug}`}
@@ -89,7 +89,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className='flex flex-col w-full h-full pb-6 group'>
+    <div className='flex relative flex-col w-full h-full pb-6 group'>
       <div className='w-full relative h-full bg-white'>
         {hasMultipleImages ? (
           <>
@@ -114,7 +114,7 @@ export default function ProductCard({
                 <SwiperSlide key={idx}>
                   <Link
                     href={`/${product.slug}`}
-                    className='block h-full w-full'
+                    className='relative block h-full w-full'
                   >
                     <Image
                       src={imgSrc}

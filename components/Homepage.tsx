@@ -12,6 +12,8 @@ export default function Homepage() {
   const primaryMobileImage = '/images/LP.DAM.webp';
   const secondaryMobileImage = '/images/LP.HERR.webp';
 
+
+
   return (
     <div className='relative'>
       <div className='relative min-h-[calc(100vh-56px)]'>
@@ -38,7 +40,8 @@ export default function Homepage() {
           priority={true}
           loading='eager'
           sizes='90vw'
-          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
+          quality={100}
+          className={`hidden md:block object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-800 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -52,11 +55,12 @@ export default function Homepage() {
           loading='eager'
           sizes='90vw'
           quality={100}
-          className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
-            currentView === 'dam' ? 'opacity-100' : 'opacity-0'
-          }`}
+          className='block md:hidden object-cover '
+          // className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
+          //   currentView === 'dam' ? 'opacity-100' : 'opacity-0'
+          // }`}
         />
-        <Image
+        {/* <Image
           src={secondaryMobileImage}
           alt='Landing-Page-Herr-Mobil'
           // width={820}
@@ -67,7 +71,7 @@ export default function Homepage() {
           className={`block md:hidden object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
             currentView === 'herr' ? 'opacity-100' : 'opacity-0'
           }`}
-        />
+        /> */}
       </div>
 
       <div className='absolute left-0 top-2/3  w-full px-6 '>
@@ -75,9 +79,7 @@ export default function Homepage() {
           <Link
             variant='secondaryTwo'
             href='/c/dam'
-            className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              currentView === 'dam' ? '' : ''
-            }`}
+            className='w-full sm:w-40 text-base font-black transition-all duration-500 '
             onMouseEnter={() => setCurrentView('dam')}
           >
             dam
@@ -85,9 +87,7 @@ export default function Homepage() {
           <Link
             variant='primaryTwo'
             href='/c/herr'
-            className={`w-full sm:w-40 text-base font-black transition-all duration-500 ${
-              currentView === 'herr' ? '' : ''
-            }`}
+            className='w-full sm:w-40 text-base font-black transition-all duration-500 '
             onMouseEnter={() => setCurrentView('herr')}
           >
             herr

@@ -56,7 +56,7 @@ export default function product({
                   images={product.images}
                   productName={product.name}
                   activeIndex={activeImageIndex}
-                  initialSlide={activeImageIndex}
+                  // initialSlide={activeImageIndex}
                   onSlideChange={setActiveImageIndex}
                   setSwiperInstance={setSwiperInstance}
                   className='md:hidden'
@@ -92,6 +92,7 @@ export default function product({
                             alt={`${product.name} - miniatyrbild ${idx + 1}`}
                             width={100}
                             height={150}
+                            // priority={true}
                             className='object-contain'
                           />
                         </div>

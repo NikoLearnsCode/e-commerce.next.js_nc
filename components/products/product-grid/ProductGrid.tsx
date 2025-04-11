@@ -30,7 +30,7 @@ export default function ProductGrid({
     <div className={className}>
    
       <div
-        className={`w-full grid gap-1    ${
+        className={`w-full grid gap-1 ${
           count === 1
             ? 'grid-cols-1 max-w-md '
             : count === 2
