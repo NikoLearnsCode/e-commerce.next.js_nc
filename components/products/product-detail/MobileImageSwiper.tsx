@@ -4,7 +4,6 @@ import Image from 'next/image';
 import {ArrowLeft, ArrowRight} from 'lucide-react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
-import type SwiperType from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,7 +15,6 @@ type MobileImageSwiperProps = {
   initialSlide?: number;
   activeIndex: number;
   onSlideChange: (index: number) => void;
-  setSwiperInstance: (instance: SwiperType | null) => void;
   className?: string;
 };
 
@@ -26,7 +24,6 @@ export default function MobileImageSwiper({
   initialSlide = 0,
   activeIndex,
   onSlideChange,
-  setSwiperInstance,
   className,
 }: MobileImageSwiperProps) {
   const prevButtonClass = 'mobile-image-prev';
@@ -60,7 +57,6 @@ export default function MobileImageSwiper({
           nextEl: `.${nextButtonClass}`,
         }}
         onSlideChange={(swiper) => onSlideChange(swiper.activeIndex)}
-        onSwiper={setSwiperInstance}
         className='aspect-7/9'
         initialSlide={initialSlide}
       >
@@ -71,7 +67,7 @@ export default function MobileImageSwiper({
               alt={`${productName} - bild ${idx + 1}`}
               fill
               sizes='(max-width: 767px) 100vw, 0px'
-              priority={idx === initialSlide}
+              priority={idx === initialSlide ? true : false}
               loading={idx === initialSlide ? 'eager' : 'lazy'}
               className='object-cover w-full h-full'
             />

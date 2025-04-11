@@ -10,9 +10,8 @@ import Newsletter from '@/components/shared/Newsletter';
 import {Truck, RefreshCcw, ShieldCheck} from 'lucide-react';
 import AccordionSection from '@/components/shared/Accordion';
 import MobileImageSwiper from './MobileImageSwiper';
-import type SwiperType from 'swiper';
 import dynamic from 'next/dynamic';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
+import {useMediaQuery} from '@/hooks/useMediaQuery';
 
 // Dynamically import the carousels
 const ProductCarousel = dynamic(
@@ -38,7 +37,7 @@ export default function product({
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const initialImageIndex = 0;
   const [activeImageIndex, setActiveImageIndex] = useState(initialImageIndex);
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+
   const isMobile = useMediaQuery('(max-width: 768px)');
   const handleAddToCartSuccess = () => {
     setSelectedSize(null);
@@ -52,59 +51,50 @@ export default function product({
           <div className='h-full md:sticky md:top-18 '>
             {product.images && product.images.length > 0 ? (
               <div className='flex flex-col justify-start w md:flex-row '>
-                {/* Mobile - Use the new component */}
-                {isMobile && (
-                <MobileImageSwiper
-                  images={product.images}
-                  productName={product.name}
-                  activeIndex={activeImageIndex}
-                  initialSlide={activeImageIndex}
-                  onSlideChange={setActiveImageIndex}
-                  setSwiperInstance={setSwiperInstance}
-                  
-                />
-                )}
-
-
-                {/* Desktop  */}
-                {!isMobile && (
-                <div className='hidden md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full '>
-                  {/* Huvudbild (controlled by activeImageIndex) */}
-                  <div className=' flex items-start justify-start w-full '>
-                    <Image
-                      src={product.images[activeImageIndex]}
-                      alt={product.name}
-                      width={1000}
-                      height={800}
-                      priority={true}
-                      loading='eager'
-                      className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh] '
-                    />
-                  </div>
-
-                  {/* Thumbnails (controls swiperInstance) */}
-                  {product.images.length > 1 && (
-                    <div className='flex flex-row lg:flex-col gap-4'>
-                      {product.images.map((img, idx) => (
-                        <div
-                          key={idx}
-                          className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
-                          onMouseEnter={() => swiperInstance?.slideTo(idx)}
-                          onClick={() => swiperInstance?.slideTo(idx)}
-                        >
-                          <Image
-                            src={img}
-                            alt={`${product.name} - miniatyrbild ${idx + 1}`}
-                            width={100}
-                            height={150}
-                            // priority={true}
-                            className='object-contain'
-                          />
-                        </div>
-                      ))}
+                {isMobile ? (
+                  <MobileImageSwiper
+                    images={product.images}
+                    productName={product.name}
+                    activeIndex={activeImageIndex}
+                    initialSlide={activeImageIndex}
+                    onSlideChange={setActiveImageIndex}
+                  />
+                ) : (
+                  <div className='md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full '>
+                    <div className=' flex items-start justify-start w-full '>
+                      <Image
+                        src={product.images[activeImageIndex]}
+                        alt={product.name}
+                        width={1000}
+                        height={800}
+                        priority={true}
+                        loading='eager'
+                        className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh] '
+                      />
                     </div>
-                  )}
-                </div>
+
+                    {product.images.length > 1 && (
+                      <div className='flex flex-row lg:flex-col gap-4'>
+                        {product.images.map((img, idx) => (
+                          <div
+                            key={idx}
+                            className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
+                            onMouseEnter={() => setActiveImageIndex(idx)}
+                            onClick={() => setActiveImageIndex(idx)}
+                          >
+                            <Image
+                              src={img}
+                              alt={`${product.name} - miniatyrbild ${idx + 1}`}
+                              width={100}
+                              height={150}
+                              priority={true}
+                              className='object-contain'
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             ) : (
