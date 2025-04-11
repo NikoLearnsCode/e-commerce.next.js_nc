@@ -9,8 +9,8 @@ export default function Homepage() {
 
   const primaryImage = '/images/LP.DAM.avif';
   const secondaryImage = '/images/LP.HERR.avif';
-  const primaryMobileImage = '/images/LP.MOBILE.DAM.jpg';
-  const secondaryMobileImage = '/images/LP.HERR.MOBILE.jpg';
+  const primaryMobileImage = '/images/LP.DAM.webp';
+  const secondaryMobileImage = '/images/LP.HERR.webp';
 
   return (
     <div className='relative'>
