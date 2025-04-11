@@ -13,7 +13,7 @@ import {twMerge} from 'tailwind-merge';
 type MobileImageSwiperProps = {
   images: string[];
   productName: string;
-  // initialSlide?: number;
+  initialSlide?: number;
   activeIndex: number;
   onSlideChange: (index: number) => void;
   setSwiperInstance: (instance: SwiperType | null) => void;
@@ -23,15 +23,14 @@ type MobileImageSwiperProps = {
 export default function MobileImageSwiper({
   images,
   productName,
-  // initialSlide = 0,
-  activeIndex = 0,
+  initialSlide = 0,
+  activeIndex,
   onSlideChange,
   setSwiperInstance,
   className,
 }: MobileImageSwiperProps) {
   const prevButtonClass = 'mobile-image-prev';
   const nextButtonClass = 'mobile-image-next';
-
 
   const isBeginning = activeIndex === 0;
   const isEnd = activeIndex === images.length - 1;
@@ -63,7 +62,7 @@ export default function MobileImageSwiper({
         onSlideChange={(swiper) => onSlideChange(swiper.activeIndex)}
         onSwiper={setSwiperInstance}
         className='aspect-7/9'
-        // initialSlide={initialSlide}
+        initialSlide={initialSlide}
       >
         {images.map((imgSrc, idx) => (
           <SwiperSlide key={idx}>
@@ -72,8 +71,8 @@ export default function MobileImageSwiper({
               alt={`${productName} - bild ${idx + 1}`}
               fill
               sizes='(max-width: 767px) 100vw, 0px'
-              priority={idx === activeIndex} 
-              loading={idx === activeIndex ? 'eager' : 'lazy'} 
+              priority={idx === initialSlide}
+              loading={idx === initialSlide ? 'eager' : 'lazy'}
               className='object-cover w-full h-full'
             />
           </SwiperSlide>

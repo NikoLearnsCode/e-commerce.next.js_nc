@@ -12,6 +12,7 @@ import AccordionSection from '@/components/shared/Accordion';
 import MobileImageSwiper from './MobileImageSwiper';
 import type SwiperType from 'swiper';
 import dynamic from 'next/dynamic';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 // Dynamically import the carousels
 const ProductCarousel = dynamic(
@@ -38,7 +39,7 @@ export default function product({
   const initialImageIndex = 0;
   const [activeImageIndex, setActiveImageIndex] = useState(initialImageIndex);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const handleAddToCartSuccess = () => {
     setSelectedSize(null);
   };
@@ -52,17 +53,21 @@ export default function product({
             {product.images && product.images.length > 0 ? (
               <div className='flex flex-col justify-start w md:flex-row '>
                 {/* Mobile - Use the new component */}
+                {isMobile && (
                 <MobileImageSwiper
                   images={product.images}
                   productName={product.name}
                   activeIndex={activeImageIndex}
-                  // initialSlide={activeImageIndex}
+                  initialSlide={activeImageIndex}
                   onSlideChange={setActiveImageIndex}
                   setSwiperInstance={setSwiperInstance}
-                  className='md:hidden'
+                  
                 />
+                )}
+
 
                 {/* Desktop  */}
+                {!isMobile && (
                 <div className='hidden md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full '>
                   {/* Huvudbild (controlled by activeImageIndex) */}
                   <div className=' flex items-start justify-start w-full '>
@@ -100,6 +105,7 @@ export default function product({
                     </div>
                   )}
                 </div>
+                )}
               </div>
             ) : (
               <div className='w-full bg-gray-200 flex items-center justify-center md:hidden'>
