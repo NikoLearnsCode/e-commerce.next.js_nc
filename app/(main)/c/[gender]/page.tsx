@@ -4,6 +4,10 @@ import ProductFilterWrapper from '@/components/products/product-grid/ProductFilt
 import {notFound} from 'next/navigation';
 import {Metadata} from 'next';
 
+// Aktivera SSG med ISR
+export const revalidate = 3600; // Uppdatera cachade sidor var 3600:e sekund (1 timme)
+export const dynamicParams = false; // Bara tillåt förbyggda paths (gender bör vara förutsägbart)
+
 interface GenderPageProps {
   params: Promise<{
     gender: string;

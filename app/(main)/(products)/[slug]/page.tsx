@@ -4,6 +4,10 @@ import type {Metadata} from 'next';
 import ProductPage from '@/components/products/product-detail/Product';
 import {Product} from '@/lib/validators';
 
+// Aktivera ISR (Incremental Static Regeneration)
+export const revalidate = 3600; // Uppdatera cachade sidor var 3600:e sekund (1 timme)
+export const dynamicParams = true; // Tillåt rendering av nya paths som inte byggdes vid build-time
+
 interface PageProps {
   params: Promise<{slug: string}>;
   searchParams: Promise<{[key: string]: string | string[] | undefined}>;
