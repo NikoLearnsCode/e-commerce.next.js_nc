@@ -11,7 +11,6 @@ import {Truck, RefreshCcw, ShieldCheck} from 'lucide-react';
 import AccordionSection from '@/components/shared/Accordion';
 import MobileImageSwiper from './MobileImageSwiper';
 import dynamic from 'next/dynamic';
-import {useMediaQuery} from '@/hooks/useMediaQuery';
 
 // Dynamically import the carousels
 const ProductCarousel = dynamic(
@@ -38,20 +37,20 @@ export default function product({
   const initialImageIndex = 0;
   const [activeImageIndex, setActiveImageIndex] = useState(initialImageIndex);
 
-  const isMobile = useMediaQuery('(max-width: 768px)');
   const handleAddToCartSuccess = () => {
     setSelectedSize(null);
   };
 
   return (
     <>
-      <div className='w-full mx-auto md:pt-4 md:pb-8 relative '>
+      <div className='w-full mx-auto md:pt-4 md:pb-8 relative'>
         <div className='flex flex-col justify-center gap-4 md:gap-8 md:flex-row lg:gap-16 md:px-4'>
-          {/* Vänster kolumn - bilder */}
-          <div className='h-full md:sticky md:top-18 '>
+          {/* Left column - images */}
+          <div className='h-full md:sticky md:top-18'>
             {product.images && product.images.length > 0 ? (
-              <div className='flex flex-col justify-start w md:flex-row '>
-                {isMobile ? (
+              <div className='flex flex-col justify-start w-full'>
+                {/* Mobile view - Only rendered in the DOM on mobile */}
+                <div className='md:hidden'>
                   <MobileImageSwiper
                     images={product.images}
                     productName={product.name}
@@ -59,64 +58,64 @@ export default function product({
                     initialSlide={activeImageIndex}
                     onSlideChange={setActiveImageIndex}
                   />
-                ) : (
-                  <div className='md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full '>
-                    <div className=' flex items-start justify-start w-full '>
-                      <Image
-                        src={product.images[activeImageIndex]}
-                        alt={product.name}
-                        width={1000}
-                        height={800}
-                        priority={true}
-                        loading='eager'
-                        className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh] '
-                      />
-                    </div>
+                </div>
 
-                    {product.images.length > 1 && (
-                      <div className='flex flex-row lg:flex-col gap-4'>
-                        {product.images.map((img, idx) => (
-                          <div
-                            key={idx}
-                            className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
-                            onMouseEnter={() => setActiveImageIndex(idx)}
-                            onClick={() => setActiveImageIndex(idx)}
-                          >
-                            <Image
-                              src={img}
-                              alt={`${product.name} - miniatyrbild ${idx + 1}`}
-                              width={100}
-                              height={150}
-                              priority={true}
-                              className='object-contain'
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                {/* Desktop view - Only rendered in the DOM on desktop */}
+                <div className='hidden md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full'>
+                  <div className='flex items-start justify-start w-full'>
+                    <Image
+                      src={product.images[activeImageIndex]}
+                      alt={product.name}
+                      width={1000}
+                      height={800}
+                      priority={true}
+                      loading='eager'
+                      className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh]'
+                    />
                   </div>
-                )}
+
+                  {product.images.length > 1 && (
+                    <div className='flex flex-row lg:flex-col gap-4'>
+                      {product.images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
+                          onMouseEnter={() => setActiveImageIndex(idx)}
+                          onClick={() => setActiveImageIndex(idx)}
+                        >
+                          <Image
+                            src={img}
+                            alt={`${product.name} - miniatyrbild ${idx + 1}`}
+                            width={100}
+                            height={150}
+                            className='object-contain'
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
-              <div className='w-full bg-gray-200 flex items-center justify-center md:hidden'>
+              <div className='w-full bg-gray-200 flex items-center justify-center'>
                 <span className='text-gray-500'>Ingen bild tillgänglig</span>
               </div>
             )}
           </div>
 
-          {/* Höger kolumn - produktinfo */}
-          <div className='flex flex-col px-6 sm:px-5 gap-4 md:mb-28 w-full md:max-w-[330px] md:min-w-[330px] lg:max-w-[400px] lg:min-w-[400px]   transition-all duration-300  '>
-            {/* Produktnamn */}
+          {/* Right column - product info */}
+          <div className='flex flex-col px-6 sm:px-5 gap-4 md:mb-28 w-full md:max-w-[330px] md:min-w-[330px] lg:max-w-[400px] lg:min-w-[400px] transition-all duration-300'>
+            {/* Product name */}
             <div>
               <h1 className='text-xl md:text-2xl mt-4 font-semibold'>
                 {product.name}
               </h1>
-              <p className='text-gray-600 font-semibold uppercase font-syne text-sm  pt-1'>
+              <p className='text-gray-600 font-semibold uppercase font-syne text-sm pt-1'>
                 {product.brand}
               </p>
             </div>
 
-            <div className='text-xl md:text-2xl my-2 sm:my-4 text-gray-800 font-semibold '>
+            <div className='text-xl md:text-2xl my-2 sm:my-4 text-gray-800 font-semibold'>
               {product.price} kr
             </div>
             <div className='flex gap-1 items-center'>
@@ -132,18 +131,18 @@ export default function product({
             <div className='flex flex-col mt-6 gap-2'>
               <span
                 className={twMerge(
-                  'text-gray-600 font-light text-sm mb-1 ',
+                  'text-gray-600 font-light text-sm mb-1',
                   selectedSize ? 'text-green-950 font-medium' : 'text-gray-600'
                 )}
               >
                 {selectedSize ? `Vald storlek: ${selectedSize}` : 'Storlekar:'}
               </span>
-              <div className='flex  items-center flex-wrap'>
+              <div className='flex items-center flex-wrap'>
                 {product.sizes.map((size) => (
                   <button
                     key={size}
                     className={twMerge(
-                      'h-12 w-16 p-0 m-0 border appearance-none text-sm  font-medium hover:border-black transition border-gray-200  cursor-pointer',
+                      'h-12 w-16 p-0 m-0 border appearance-none text-sm font-medium hover:border-black transition border-gray-200 cursor-pointer',
                       selectedSize === size
                         ? 'border border-black bg-gray-100'
                         : ''
@@ -168,9 +167,9 @@ export default function product({
             <div className='space-y-4 mt-4'>
               <AccordionSection
                 title='Om produkten'
-                className='text-base font-medium '
+                className='text-base font-medium'
               >
-                <p className='text-gray-600 font-normal text-base '>
+                <p className='text-gray-600 font-normal text-base'>
                   {product.description}
                 </p>
               </AccordionSection>
@@ -191,8 +190,8 @@ export default function product({
               </AccordionSection>
             </div>
 
-            {/* Information om frakt, returer, etc. */}
-            <div className=' space-y-8 pt-12 '>
+            {/* Shipping, returns, etc. */}
+            <div className='space-y-8 pt-12'>
               <div>
                 <div className='flex items-center gap-3 mb-1'>
                   <Truck size={25} strokeWidth={1.25} />
@@ -232,16 +231,16 @@ export default function product({
         </div>
       </div>
 
-      {/* Produkter i samma kategori */}
+      {/* Products in the same category */}
       {categoryProducts.length > 0 && (
-        <div className=' mx-auto   pt-20 pb-8'>
+        <div className='mx-auto pt-20 pb-8'>
           <ProductCarousel products={categoryProducts} />
         </div>
       )}
 
-      {/* Produkter för samma kön */}
+      {/* Products for the same gender */}
       {genderProducts.length > 0 && (
-        <div className=' mx-auto   py-8'>
+        <div className='mx-auto py-8'>
           <ProductTwo products={genderProducts} />
         </div>
       )}

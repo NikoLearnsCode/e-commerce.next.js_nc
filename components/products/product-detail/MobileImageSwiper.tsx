@@ -67,8 +67,8 @@ export default function MobileImageSwiper({
               alt={`${productName} - bild ${idx + 1}`}
               fill
               sizes='(max-width: 767px) 100vw, 0px'
-              priority={idx === initialSlide ? true : false}
-              loading={idx === initialSlide ? 'eager' : 'lazy'}
+              priority={idx === 0}
+              loading={idx === 0 ? 'eager' : 'lazy'}
               className='object-cover w-full h-full'
             />
           </SwiperSlide>
