@@ -34,7 +34,7 @@ export default function Homepage() {
             loading='eager'
             sizes='90vw'
             quality={80}
-            className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'dam' ? 'opacity-100' : 'opacity-0'}`}
+            className={`object-cover object-top w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'dam' ? 'opacity-100' : 'opacity-0'}`}
           />
           <Image
             src={herrMobileImage}
@@ -44,7 +44,7 @@ export default function Homepage() {
             loading='eager'
             sizes='90vw'
             quality={100}
-            className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
+            className={`object-cover object-top  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
 
