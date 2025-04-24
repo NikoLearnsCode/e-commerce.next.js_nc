@@ -90,9 +90,9 @@ export default function CartDropdown() {
         {isCartOpen && (
           <motion.div
             className='absolute -right-3 md:right-0 top-10.5  w-72 md:w-96 bg-white shadow-lg rounded-xs z-20 overflow-hidden '
-            initial={{opacity: 0, y: -10}}
+            initial={{opacity: 0, y: -15}}
             animate={{opacity: 1, y: 0}}
-            exit={{opacity: 0, y: -10}}
+            exit={{opacity: 0, y: -15}}
             transition={{duration: 0.3}}
           >
             <div className='border  border-gray-200 rounded-xs'>

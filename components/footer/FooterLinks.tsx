@@ -14,7 +14,7 @@ export default function FooterLinks({data}: FooterLinksProps) {
             key={social.platform}
             href={social.href}
             target='_blank'
-            className='border-b pb-1 border-transparent hover:border-black transition'
+            className=' hover:underline pb-1 underline-offset-4'
           >
             {social.platform}
           </Link>
@@ -26,7 +26,7 @@ export default function FooterLinks({data}: FooterLinksProps) {
             {column.links.map((link) => (
               <li
                 key={link.text}
-                className='w-fit mb-3 pb-1 border-b border-transparent  hover:border-black transition'
+                className='w-fit mb-3 pb-1 hover:underline underline-offset-4'
               >
                 <Link href={link.href}>{link.text}</Link>
               </li>

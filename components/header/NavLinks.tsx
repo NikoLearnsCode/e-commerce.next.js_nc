@@ -23,7 +23,7 @@ const navLinks: NavLink[] = [
       {title: 'KLÄNNINGAR', href: '/c/dam/klanningar'},
       {title: 'BYXOR', href: '/c/dam/byxor'},
       {title: 'JACKOR', href: '/c/dam/jackor'},
-      {title: 'TOPPAR', href: '/c/dam/toppar'},
+      {title: 'TOPPAR', href: '/c/dam/Toppar'},
 
       {title: 'ERBJUDANDEN', href: '/c/dam'},
     ],

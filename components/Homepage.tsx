@@ -9,8 +9,8 @@ export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
   // Define image sources
-  const damDesktopImage = '/images/dam.ai.2.1.png';
-  const herrDesktopImage = '/images/herr.ai.2.1.png';
+  const damDesktopImage = '/images/dam.ai.desktop.png';
+  const herrDesktopImage = '/images/herr.ai.desktop.png';
   const damMobileImage = '/images/dam.ai.mobile.png';
   const herrMobileImage = '/images/herr.ai.mobile.png';
 
@@ -25,7 +25,7 @@ export default function Homepage() {
     <div className='relative'>
       <div className='relative min-h-[calc(100vh-56px)]'>
         {/* Mobile images with swipe */}
-        <div className='sm:hidden' {...handlers}>
+        <div className='sm:hidden absolute w-full h-full' {...handlers}>
           <Image
             src={damMobileImage}
             alt='Landing-Page-Dam-Mobil'
@@ -33,22 +33,23 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={90}
-            className={`object-cover object-top w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'dam' ? 'opacity-100' : 'opacity-0'}`}
+            quality={80}
+            className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'dam' ? 'opacity-100' : 'opacity-0'}`}
           />
           <Image
             src={herrMobileImage}
             alt='Landing-Page-Herr-Mobil'
             fill
-            loading='lazy' // Lazy load the second mobile image
+            priority={true}
+            loading='eager'
             sizes='90vw'
-            quality={90}
-            className={`object-cover object-top w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
+            quality={100}
+            className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
 
         {/* Desktop images with animation */}
-        <div className='hidden sm:block'>
+        <div className='hidden sm:block w-full h-full absolute '>
           <Image
             src={damDesktopImage}
             alt='Landing-Page-Dam'
@@ -56,7 +57,7 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={90}
+            quality={100}
             className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'dam' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -67,7 +68,7 @@ export default function Homepage() {
             fill
             loading='lazy'
             sizes='90vw'
-            quality={90}
+            quality={100}
             className={`object-cover   w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'herr' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -81,7 +82,11 @@ export default function Homepage() {
             variant='secondaryTwo'
             href='/c/dam'
             className='w-full sm:w-40 text-base font-black transition-all duration-500'
-            onMouseEnter={() => setCurrentView('dam')}
+            onPointerEnter={(e) => {
+              if (e.pointerType === 'mouse') {
+                setCurrentView('dam');
+              }
+            }}
           >
             dam
           </Link>
@@ -89,10 +94,24 @@ export default function Homepage() {
             variant='primaryTwo'
             href='/c/herr'
             className='w-full sm:w-40 text-base font-black transition-all duration-500'
-            onMouseEnter={() => setCurrentView('herr')}
+            onPointerEnter={(e) => {
+              if (e.pointerType === 'mouse') {
+                setCurrentView('herr');
+              }
+            }}
           >
             herr
           </Link>
+        </div>
+
+        {/* Pagination Indicator (Mobile Only) */}
+        <div className='sm:hidden flex justify-center mt-10 space-x-2 '>
+          <span
+            className={`block w-5 h-0.5  transition-colors duration-300 ${currentView === 'dam' ? 'bg-white' : 'bg-white/30'}`}
+          ></span>
+          <span
+            className={`block w-5 h-0.5  transition-colors duration-300 ${currentView === 'herr' ? 'bg-white' : 'bg-white/30'}`}
+          ></span>
         </div>
       </div>
     </div>

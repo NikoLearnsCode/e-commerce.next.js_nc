@@ -62,7 +62,7 @@ export default function CartItems({compact = false}: CartItemsProps) {
                 className='flex items-center p-2 border-b border-gray-100'
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
-                exit={{opacity: 0, height: 0}}
+                exit={{opacity: 0}}
               >
                 <div className='relative h-auto w-16 bg-gray-100 mr-3'>
                   <Link href={`/${item.slug}`}>
@@ -94,7 +94,7 @@ export default function CartItems({compact = false}: CartItemsProps) {
                   </p>
                   <div className='flex justify-between items-center mt-1'>
                     <span className='text-xs'>
-                      {item.quantity} × {formatPrice(item.price)}
+                      {item.quantity} x {formatPrice(item.price)}
                     </span>
 
                     <button
@@ -129,7 +129,7 @@ export default function CartItems({compact = false}: CartItemsProps) {
               }}
               transition={{
                 type: 'spring',
-                stiffness: 500,
+                stiffness: 400,
                 damping: 30,
               }}
               layout
