@@ -9,10 +9,10 @@ export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
   // Define image sources
-  const damDesktopImage = '/images/dam.ai.desktop.png';
-  const herrDesktopImage = '/images/herr.ai.desktop.png';
-  const damMobileImage = '/images/dam.ai.mobile.png';
-  const herrMobileImage = '/images/herr.ai.mobile.png';
+  const damDesktopImage = '/images/dam.sora.desktop1.png';
+  const herrDesktopImage = '/images/herr.sora.desktop1.png';
+  const damMobileImage = '/images/dam.sora.mobile1.png';
+  const herrMobileImage = '/images/herr.sora.mobile1.png';
 
   const handlers = useSwipeable({
     onSwipedLeft: () => setCurrentView('herr'),
@@ -33,7 +33,7 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={80}
+            quality={90}
             className={`object-cover object-top w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${currentView === 'dam' ? 'opacity-100' : 'opacity-0'}`}
           />
           <Image
@@ -43,7 +43,7 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={100}
+            quality={90}
             className={`object-cover object-top  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
@@ -57,7 +57,7 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={100}
+            quality={90}
             className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'dam' ? 'opacity-100' : 'opacity-0'
             }`}
@@ -68,7 +68,7 @@ export default function Homepage() {
             fill
             loading='lazy'
             sizes='90vw'
-            quality={100}
+            quality={90}
             className={`object-cover   w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'herr' ? 'opacity-100' : 'opacity-0'
             }`}
