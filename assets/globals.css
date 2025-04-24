@@ -179,30 +179,32 @@ body {
   fill: #9b8864;
 }
 
-/* 
-.logo-n-line1 {
-  stroke: #696666; 
+
+/* .logo-n-line1 {
+  stroke: #404040; 
   stroke-width: 15;
   stroke-linecap: square;
 }
 
 
 .logo-n-line2 {
-  stroke: #7b7e7b; 
+  stroke: #404040; 
   stroke-width: 15;
   stroke-linecap: square;
 }
 
 
 .logo-n-line3 {
-  stroke: #49494d; 
+  stroke: #404040; 
   stroke-width: 15;
   stroke-linecap: square;
 }
 
 
 .logo-c {
-  fill: #5e5e5c; 
+  fill: #404040; 
+  
+    
 } */
 
 .font-syne {

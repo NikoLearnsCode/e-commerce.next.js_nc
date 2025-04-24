@@ -140,10 +140,10 @@ export default function ProductFilterWrapper({
   return (
     <div className='relative'>
       {isCategoryPage && genderCategoryTitle && (
-        <div className='flex text-sm  font-syne items-center flex-row px-6 sm:px-8 gap-2 pt-2 my-2'>
+        <div className='flex text-sm   items-center flex-row px-6 sm:px-8 gap-2 pt-2 my-2'>
           <Link
             href={`/c/${currentGender}`}
-            className='flex items-center uppercase gap-2 font-syne text-sm font-medium text-gray-500'
+            className='flex items-center uppercase gap-2  text-sm font-medium text-gray-500'
           >
             <span className=' hover:text-black '>{currentGender}</span>
           </Link>
@@ -157,7 +157,7 @@ export default function ProductFilterWrapper({
       )}
 
       {isGenderPage && uniqueCategories.length > 0 && (
-        <div className='px-6 sm:px-8 font-syne my-2 pt-2'>
+        <div className='px-6 sm:px-8  my-2 pt-2'>
           <div className='flex flex-wrap gap-4 uppercase font-medium'>
             <div className='text-black  text-sm'>allt</div>
             {uniqueCategories.map((category) => (
