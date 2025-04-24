@@ -8,9 +8,9 @@ export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
   // Define image sources
-  const damDesktopImage = '/images/LP.DAM.avif';
-  const herrDesktopImage = '/images/LP.HERR.avif';
-  const damMobileImage = '/images/LP.DAM.webp';
+  const damDesktopImage = '/images/dam.ai.2.1.png';
+  const herrDesktopImage = '/images/herr.ai.2.1.png';
+  const damMobileImage = '/images/dam.ai.mobile.png';
 
   return (
     <div className='relative'>
@@ -24,7 +24,7 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={100}
+            quality={90}
             className='object-cover w-full h-full absolute top-0 left-0'
           />
         </div>
@@ -38,8 +38,8 @@ export default function Homepage() {
             priority={true}
             loading='eager'
             sizes='90vw'
-            quality={100}
-            className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
+            quality={90}
+            className={`object-cover  w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'dam' ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -49,15 +49,15 @@ export default function Homepage() {
             fill
             loading='lazy'
             sizes='90vw'
-            quality={100}
-            className={`object-cover w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
+            quality={90}
+            className={`object-cover   w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'herr' ? 'opacity-100' : 'opacity-0'
             }`}
           />
         </div>
       </div>
 
-      <div className='absolute left-0 top-2/3 w-full px-6'>
+      <div className='absolute left-0 top-3/4 w-full px-6'>
         <div className='flex justify-center items-center space-x-5 font-syne uppercase'>
           <Link
             variant='secondaryTwo'
