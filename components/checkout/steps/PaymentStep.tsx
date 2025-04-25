@@ -35,7 +35,7 @@ export default function PaymentStep({onNext, deliveryData}: PaymentStepProps) {
       cardNumber: '1234 5678 9012 3456',
       expiryDate: '01/25',
       cvv: '123',
-      swishNumber: '1234567890',
+      swishNumber: '123 456 7890',
       klarnaNumber: '1234567890',
       campaignCode: '',
     },

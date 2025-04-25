@@ -25,10 +25,10 @@ export default function OrderConfirmation() {
 
   return (
     <div className='max-w-lg mx-auto px-4 pt-16 py-8 text-center'>
-      <h1 className='text-3xl font-medium mb-6'>Tack för din beställning!</h1>
-      <p className='text-gray-600 font-normal text-base mb-6'>
+      <h1 className='text-4xl font-medium mb-6'>Tack för din beställning!</h1>
+      <p className='text-gray-600 font-normal text-lg mb-6'>
         Vi har tagit emot din order och kommer att behandla den så snart som
-        möjligt. En orderbekräftelse har skickats till din e-postadress.
+        möjligt.
       </p>
 
       <div className='mt-12'>
