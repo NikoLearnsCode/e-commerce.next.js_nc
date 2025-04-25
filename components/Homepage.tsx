@@ -9,10 +9,10 @@ export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
   // Define image sources
-  const damDesktopImage = '/images/dam.sora.desktop1.png';
-  const herrDesktopImage = '/images/herr.sora.desktop1.png';
-  const damMobileImage = '/images/dam.sora.mobile1.png';
-  const herrMobileImage = '/images/herr.sora.mobile1.png';
+  const damDesktopImage = '/images/LP.DAM.webp';
+  const herrDesktopImage = '/images/LP.HERR.webp';
+  const damMobileImage = '/images/LP.DAM.MOBILE.jpg';
+  const herrMobileImage = '/images/LP.HERR.MOBILE.jpg';
 
   const handlers = useSwipeable({
     onSwipedLeft: () => setCurrentView('herr'),
@@ -44,7 +44,7 @@ export default function Homepage() {
             loading='eager'
             sizes='90vw'
             quality={90}
-            className={`object-cover grayscale-10 object-top  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
+            className={`object-cover  object-top  w-full h-full absolute top-0 left-0 transition-opacity duration-700 will-change-opacity ${currentView === 'herr' ? 'opacity-100' : 'opacity-0'}`}
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function Homepage() {
             loading='lazy'
             sizes='90vw'
             quality={90}
-            className={`object-cover  grayscale-10 w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
+            className={`object-cover   w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
               currentView === 'herr' ? 'opacity-100' : 'opacity-0'
             }`}
           />
