@@ -66,7 +66,7 @@ export default function MobileImageSwiper({
               src={imgSrc}
               alt={`${productName} - bild ${idx + 1}`}
               fill
-              quality={100}
+              quality={90}
               sizes='(max-width: 767px) 100vw, 0px'
               priority={idx === 0}
               loading={idx === 0 ? 'eager' : 'lazy'}
