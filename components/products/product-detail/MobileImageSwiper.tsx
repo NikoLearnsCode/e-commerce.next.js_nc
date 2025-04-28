@@ -66,6 +66,7 @@ export default function MobileImageSwiper({
               src={imgSrc}
               alt={`${productName} - bild ${idx + 1}`}
               fill
+              quality={100}
               sizes='(max-width: 767px) 100vw, 0px'
               priority={idx === 0}
               loading={idx === 0 ? 'eager' : 'lazy'}
@@ -79,7 +80,7 @@ export default function MobileImageSwiper({
         <>
           <button
             className={twMerge(
-              `${prevButtonClass} absolute right-10 bottom-2  hover:bg-gray-200 p-1 transition cursor-pointer z-10`,
+              `${prevButtonClass} absolute right-10 bottom-2 text-gray-700  p-1  cursor-pointer z-10`,
               isBeginning ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
             aria-label='Föregående bild'
@@ -88,7 +89,7 @@ export default function MobileImageSwiper({
           </button>
           <button
             className={twMerge(
-              `${nextButtonClass} absolute right-2 bottom-2 hover:bg-gray-200 p-1 transition cursor-pointer  z-10`,
+              `${nextButtonClass} absolute right-2 bottom-2 text-gray-700 p-1  cursor-pointer  z-10`,
               isEnd ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
             aria-label='Nästa bild'

@@ -5,10 +5,8 @@ import AddToCartButton from '@/components/products/product-detail/AddToCartButto
 import {twMerge} from 'tailwind-merge';
 import {Product} from '@/lib/validators';
 import {useState} from 'react';
-import {Dot} from 'lucide-react';
 import Newsletter from '@/components/shared/Newsletter';
-import {Truck, RefreshCcw, ShieldCheck} from 'lucide-react';
-import AccordionSection from '@/components/shared/Accordion';
+
 import MobileImageSwiper from './MobileImageSwiper';
 import dynamic from 'next/dynamic';
 
@@ -43,71 +41,51 @@ export default function product({
 
   return (
     <>
-      <div className='w-full mx-auto md:pt-4 md:pb-8 relative'>
-        <div className='flex flex-col justify-center gap-4 md:gap-8 md:flex-row lg:gap-16 md:px-4'>
+      <div className='w-full mx-auto lg:pt-4 lg:pb-8 '>
+        <div className='flex  flex-col justify-center gap-4 lg:gap-8 lg:flex-row xl:gap-16 lg:px-4'>
           {/* Left column - images */}
-          <div className='h-full md:sticky md:top-18'>
+          <div className='h-full w-full '>
             {product.images && product.images.length > 0 ? (
               <div className='flex flex-col justify-start w-full'>
                 {/* Mobile view - Only rendered in the DOM on mobile */}
-                <div className='md:hidden'>
+                <div className='lg:hidden'>
                   <MobileImageSwiper
                     images={product.images}
                     productName={product.name}
                     activeIndex={activeImageIndex}
-                    initialSlide={activeImageIndex}
+                    initialSlide={initialImageIndex}
                     onSlideChange={setActiveImageIndex}
                   />
                 </div>
 
-                {/* Desktop view - Only rendered in the DOM on desktop */}
-                <div className='hidden md:flex md:flex-col items-start lg:flex-row-reverse gap-2 h-full'>
-                  <div className='flex items-start justify-start w-full'>
-                    <Image
-                      src={product.images[activeImageIndex]}
-                      alt={product.name}
-                      width={1000}
-                      height={800}
-                      priority={true}
-                      loading='eager'
-                      className='object-contain object-top w-full xl:min-h-[85vh] xl:max-h-[85vh]'
-                    />
-                  </div>
-
-                  {product.images.length > 1 && (
-                    <div className='flex flex-row lg:flex-col gap-4'>
-                      {product.images.map((img, idx) => (
-                        <div
-                          key={idx}
-                          className={`w-20 h-auto border-2 cursor-pointer ${idx === activeImageIndex ? 'border-black' : 'border-gray-200'}`}
-                          onMouseEnter={() => setActiveImageIndex(idx)}
-                          onClick={() => setActiveImageIndex(idx)}
-                        >
-                          <Image
-                            src={img}
-                            alt={`${product.name} - miniatyrbild ${idx + 1}`}
-                            width={100}
-                            height={150}
-                            className='object-contain'
-                          />
-                        </div>
-                      ))}
+                {/* Desktop view - Display all images in a grid */}
+                <div className='hidden flex-1 lg:grid lg:grid-cols-2 lg:gap-2 '>
+                  {product.images.map((img, idx) => (
+                    <div key={idx} className='relative     aspect-[7/9]'>
+                      <Image
+                        src={img}
+                        alt={`${product.name} - bild ${idx + 1}`}
+                        fill
+                        priority={true}
+                        loading='eager'
+                        className='object-cover  max-h-full '
+                      />
                     </div>
-                  )}
+                  ))}
                 </div>
               </div>
             ) : (
-              <div className='w-full bg-gray-200 flex items-center justify-center'>
+              <div className='w-full bg-gray-200 flex items-center justify-center h-[500px]'>
                 <span className='text-gray-500'>Ingen bild tillgänglig</span>
               </div>
             )}
           </div>
 
           {/* Right column - product info */}
-          <div className='flex flex-col px-6 sm:px-5 gap-4 md:mb-28 w-full md:max-w-[330px] md:min-w-[330px] lg:max-w-[400px] lg:min-w-[400px] transition-all duration-300'>
+          <div className='flex flex-col lg:pt-16 px-6 lg:mr-12 sticky top-18 h-full  sm:px-5 gap-4 mb-12  lg:w-[40%] transition-all duration-300'>
             {/* Product name */}
             <div>
-              <h1 className='text-xl md:text-2xl mt-4 font-semibold'>
+              <h1 className='text-xl lg:text-2xl mt-4 font-semibold'>
                 {product.name}
               </h1>
               <p className='text-gray-600 font-semibold uppercase font-syne text-sm pt-1'>
@@ -115,7 +93,7 @@ export default function product({
               </p>
             </div>
 
-            <div className='text-xl md:text-2xl my-2 sm:my-4 text-gray-800 font-semibold'>
+            <div className='text-xl lg:text-2xl my-2 sm:my-4 text-gray-800 font-semibold'>
               {product.price} kr
             </div>
             <div className='flex gap-1 items-center'>
@@ -164,7 +142,7 @@ export default function product({
               disabled={!selectedSize}
             />
 
-            <div className='space-y-4 mt-4'>
+            {/* <div className='space-y-4 mt-4'>
               <AccordionSection
                 title='Om produkten'
                 className='text-base font-medium'
@@ -188,10 +166,10 @@ export default function product({
                   </span>
                 ))}
               </AccordionSection>
-            </div>
+            </div> */}
 
             {/* Shipping, returns, etc. */}
-            <div className='space-y-8 pt-12'>
+            {/* <div className='space-y-8 pt-12'>
               <div>
                 <div className='flex items-center gap-3 mb-1'>
                   <Truck size={25} strokeWidth={1.25} />
@@ -199,7 +177,7 @@ export default function product({
                     Gratis frakt och snabb leverans
                   </h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 md:pr-12'>
+                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
                   Gäller för beställningar över 499 kr. Leverans inom 2-3
                   arbetsdagar.
                 </p>
@@ -212,7 +190,7 @@ export default function product({
                     Enkla byten av presenter
                   </h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 md:pr-12'>
+                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
                   Logga in och skapa ett presentkvitto.
                 </p>
               </div>
@@ -222,18 +200,25 @@ export default function product({
                   <RefreshCcw size={25} strokeWidth={1.25} />
                   <h3 className='font-medium text-gray-900'>Enkla returer</h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 md:pr-12'>
+                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
                   Vi erbjuder enkla kostnadsfria returer inom 30 dagar.
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
-
+      <div className=' px-6 lg:px-10'>
+        <h5 className='uppercase text-lg lg:text-xl  mb-1 font-medium'>
+          Beskrivning
+        </h5>
+        <p className='text-gray-700 font-normal text-base lg:text-lg  '>
+          {product.description}
+        </p>
+      </div>
       {/* Products in the same category */}
       {categoryProducts.length > 0 && (
-        <div className='mx-auto pt-20 pb-8'>
+        <div className='mx-auto pt-24 lg:pt-40 pb-8'>
           <ProductCarousel products={categoryProducts} />
         </div>
       )}

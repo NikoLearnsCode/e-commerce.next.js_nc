@@ -41,6 +41,7 @@ const baseProducts = [
       '/images/herr/byxor/byxor-herr1.webp',
       '/images/herr/byxor/byxor-herr2.webp',
       '/images/herr/byxor/byxor-herr3.webp',
+      '/images/herr/byxor/byxor-herr1.webp',
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
@@ -62,6 +63,8 @@ const baseProducts = [
       'Tål ej strykning',
     ],
     images: [
+      '/images/herr/jackor/rock1.webp',
+      '/images/herr/jackor/rock2.webp',
       '/images/herr/jackor/rock1.webp',
       '/images/herr/jackor/rock2.webp',
     ],
@@ -87,6 +90,8 @@ const baseProducts = [
     images: [
       '/images/herr/overshirt/overshirt2.webp',
       '/images/herr/overshirt/overshirt1.webp',
+      '/images/herr/overshirt/overshirt2.webp',
+      '/images/herr/overshirt/overshirt1.webp',
     ],
     sizes: ['44', '46', '48', '50', '52', '54'],
   },
@@ -110,6 +115,8 @@ const baseProducts = [
       'Tål ej kemtvätt',
     ],
     images: [
+      '/images/herr/tshirt/tshirt-herr3.webp',
+      '/images/herr/tshirt/tshirt-herr2.webp',
       '/images/herr/tshirt/tshirt-herr3.webp',
       '/images/herr/tshirt/tshirt-herr2.webp',
     ],
@@ -139,6 +146,8 @@ const baseProducts = [
       '/images/dam/byxor/byxor-dam1.webp',
       '/images/dam/byxor/byxor-dam3.webp',
       '/images/dam/byxor/byxor-dam2.webp',
+      '/images/dam/byxor/byxor-dam1.webp',
+     
     ],
     sizes: ['32', '34', '36', '38', '40', '42', '44'],
   },
@@ -161,6 +170,8 @@ const baseProducts = [
       'Kemtvätt rekommenderas',
     ],
     images: [
+      '/images/dam/jackor/jackor-dam2.webp',
+      '/images/dam/jackor/jackor-dam3.webp',
       '/images/dam/jackor/jackor-dam2.webp',
       '/images/dam/jackor/jackor-dam3.webp',
     ],
@@ -186,6 +197,8 @@ const baseProducts = [
     images: [
       '/images/dam/klänningar/klänning-dam2.webp',
       '/images/dam/klänningar/klänning-dam1.webp',
+      '/images/dam/klänningar/klänning-dam2.webp',
+      '/images/dam/klänningar/klänning-dam1.webp',
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
@@ -206,7 +219,11 @@ const baseProducts = [
       'Maskintvätt högst 30°C',
       'Tål strykning',
     ],
-    images: ['/images/dam/toppar/topp1.webp', '/images/dam/toppar/topp2.webp'],
+    images: ['/images/dam/toppar/topp1.webp',
+      '/images/dam/toppar/topp2.webp',
+      '/images/dam/toppar/topp1.webp',
+      '/images/dam/toppar/topp2.webp',
+    ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
   },
 ];
