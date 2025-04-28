@@ -9,6 +9,7 @@ import Newsletter from '@/components/shared/Newsletter';
 
 import MobileImageSwiper from './MobileImageSwiper';
 import dynamic from 'next/dynamic';
+import {Dot} from 'lucide-react';
 
 // Dynamically import the carousels
 const ProductCarousel = dynamic(
@@ -208,8 +209,8 @@ export default function product({
           </div>
         </div>
       </div>
-      <div className=' px-6 lg:px-10'>
-        <h5 className='uppercase text-lg lg:text-xl  mb-1 font-medium'>
+      <div className=' px-6 lg:px-10 lg:w-[65%]'>
+        <h5 className='uppercase text-base lg:text-lg  mb-0.5 font-semibold'>
           Beskrivning
         </h5>
         <p className='text-gray-700 font-normal text-base lg:text-lg  '>
