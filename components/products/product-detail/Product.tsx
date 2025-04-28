@@ -67,6 +67,8 @@ export default function product({
                         src={img}
                         alt={`${product.name} - bild ${idx + 1}`}
                         fill
+                        quality={90}
+                        sizes='(min-width: 1024px) 30vw, 0vw'
                         priority={true}
                         loading='eager'
                         className='object-cover  max-h-full '
