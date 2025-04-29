@@ -79,10 +79,10 @@ export default function ProductCard({
           <p className='text-xs font-semibold uppercase font-syne text-gray-600 '>
             {product.brand}
           </p>
-          <p className='text-sm sm-text-base'>{product.price.toFixed(2)} kr</p>
-          <p className='text-xs font-medium text-gray-600 uppercase font-syne'>
+          <p className='text-sm sm-text-base'>{product.price} kr</p>
+          {/* <p className='text-xs font-medium text-gray-600 uppercase font-syne'>
             {product.color}
-          </p>
+          </p> */}
         </div>
       </div>
     );
@@ -183,10 +183,10 @@ export default function ProductCard({
         <p className='text-xs font-semibold uppercase font-syne text-gray-600 '>
           {product.brand}
         </p>
-        <p className='text-sm sm-text-base'>{product.price.toFixed(2)} kr</p>
-        <p className='text-xs font-medium text-gray-600 uppercase font-syne'>
+        <p className='text-sm sm-text-base'>{product.price} kr</p>
+        {/* <p className='text-xs font-medium text-gray-600 uppercase font-syne'>
           {product.color}
-        </p>
+        </p> */}
       </div>
     </div>
   );
