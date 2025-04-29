@@ -43,7 +43,7 @@ export default function product({
   return (
     <>
       <div className='w-full mx-auto lg:pt-4 lg:pb-8 '>
-        <div className='flex  flex-col justify-center gap-4 lg:gap-8 lg:flex-row xl:gap-16 lg:px-4'>
+        <div className='flex  flex-col justify-center gap-4 lg:gap-8 lg:flex-row xl:gap-16 '>
           {/* Left column - images */}
           <div className='h-full w-full '>
             {product.images && product.images.length > 0 ? (
@@ -60,7 +60,7 @@ export default function product({
                 </div>
 
                 {/* Desktop view - Display all images in a grid */}
-                <div className='hidden flex-1 lg:grid lg:grid-cols-2 lg:gap-2 '>
+                <div className='hidden flex-1 lg:grid md lg:grid-cols-2 lg:gap-1 '>
                   {product.images.map((img, idx) => (
                     <div key={idx} className='relative     aspect-[7/9]'>
                       <Image
