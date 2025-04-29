@@ -63,9 +63,9 @@ export default function CartDropdown() {
       >
         <>
           {isLoading ? (
-            <div className='flex items-center  h-8 w-8 rounded-full justify-center z-50 bg-white'>
-              <SpinningLogo width='32' height='27' />
-            </div>
+             <div className='flex items-center justify-center'>
+             <SpinningLogo width='30' height='25' />
+           </div>
           ) : (
             <PiBagSimpleThin
               size={28}

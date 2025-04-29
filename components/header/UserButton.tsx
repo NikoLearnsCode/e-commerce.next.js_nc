@@ -81,7 +81,7 @@ const UserButton = () => {
   if (loading) {
     return (
       <div className='flex items-center justify-center'>
-        <SpinningLogo width='32' height='27' />
+        <SpinningLogo width='30' height='25' />
       </div>
     );
   }

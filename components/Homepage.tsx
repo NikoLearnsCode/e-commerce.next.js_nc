@@ -8,7 +8,7 @@ import {useSwipeable} from 'react-swipeable';
 export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
-  // Define image sources
+
   const damDesktopImage = '/images/LP.DAM.webp';
   const herrDesktopImage = '/images/LP.HERR.webp';
   const damMobileImage = '/images/LP.DAM.MOBILE.jpg';
@@ -17,8 +17,8 @@ export default function Homepage() {
   const handlers = useSwipeable({
     onSwipedLeft: () => setCurrentView('herr'),
     onSwipedRight: () => setCurrentView('dam'),
-    preventScrollOnSwipe: true, // Prevent scrolling while swiping
-    trackMouse: true, // Allow swiping with mouse for testing/desktop emulation
+    preventScrollOnSwipe: true, 
+    trackMouse: true,
   });
 
   return (
@@ -104,7 +104,7 @@ export default function Homepage() {
           </Link>
         </div>
 
-        {/* Pagination Indicator (Mobile Only) */}
+      
         <div className='sm:hidden flex justify-center mt-10 space-x-2 '>
           <span
             className={`block w-5 h-0.5  transition-colors duration-300 ${currentView === 'dam' ? 'bg-white' : 'bg-white/30'}`}
