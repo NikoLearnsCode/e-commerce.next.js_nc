@@ -57,9 +57,9 @@ export default function CartItems({compact = false}: CartItemsProps) {
           // Compact view for header dropdown
           if (compact) {
             return (
-              <motion.div
+              <div
                 key={item.id}
-                className='flex items-center p-2 border-b border-gray-100'
+                className={`flex items-center px-5 not-last:border-b  border-gray-100 py-3 justify-between gap-4 ${removingItems[item.id] ? 'opacity-50' : ''}`}
               >
                 <div className='relative h-auto w-16 bg-gray-100 mr-3'>
                   <Link href={`/${item.slug}`}>
@@ -95,15 +95,15 @@ export default function CartItems({compact = false}: CartItemsProps) {
                     </span>
 
                     <button
-                      className={`font-medium mr-3 transition border-gray-400 text-black hover:text-red-700 hover:border-red-700  text-xs border-b disabled:opacity-50 cursor-pointer ${isRemoving ? 'text-red-700 border-red-700 hover:border-red-700' : ''}`}
+                      className={`font-medium mr-3 transition border-gray-400 text-black hover:text-red-700 hover:border-red-700  text-xs border-b disabled:opacity-50 cursor-pointer ${removingItems[item.id] ? 'text-red-700 border-red-700 hover:border-red-700' : ''}`}
                       onClick={() => handleRemoveItem(item.id)}
-                      disabled={isRemoving}
+                      disabled={removingItems[item.id]}
                     >
-                      {isRemoving ? 'Tar bort' : 'Ta bort'}
+                      {removingItems[item.id] ? 'Tar bort' : 'Ta bort'}
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           }
 
