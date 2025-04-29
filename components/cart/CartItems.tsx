@@ -60,10 +60,6 @@ export default function CartItems({compact = false}: CartItemsProps) {
               <motion.div
                 key={item.id}
                 className='flex items-center p-2 border-b border-gray-100'
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                exit={{opacity: 0}}
-                transition={{duration: 0.3}}
               >
                 <div className='relative h-auto w-16 bg-gray-100 mr-3'>
                   <Link href={`/${item.slug}`}>
