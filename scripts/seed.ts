@@ -179,14 +179,14 @@ const baseProducts = [
   },
   // Klänningar
   {
-    name: 'Jeans Klänning',
+    name: 'Demin Playsuit',
     description:
       'Den här denim playsuiten är ett snyggt och bekvämt alternativ för alla tillfällen. Den har en klassisk krage, korta ärmar och en dragkedja framtill.',
     price: 1899,
     brand: 'Hermano',
     gender: 'dam',
     color: 'blue',
-    slug: 'jeans-klanning',
+    slug: 'demin-playsuit',
     category: 'klanningar',
     specs: [
       'Normal passform',

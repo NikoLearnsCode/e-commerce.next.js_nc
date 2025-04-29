@@ -85,23 +85,23 @@ export default function product({
           </div>
 
           {/* Right column - product info */}
-          <div className='flex flex-col lg:pt-16 px-6 lg:mr-12 sticky top-18 h-full  sm:px-5 gap-4 mb-12  lg:w-[40%] transition-all duration-300'>
+          <div className='flex flex-col lg:pt-16 px-6 lg:mr-12 sticky top-18 h-full  sm:px-5 gap-3 lg:gap-1 mb-12  lg:w-[40%] transition-all duration-300'>
             {/* Product name */}
             <div>
-              <h1 className='text-xl lg:text-2xl mt-4 font-semibold'>
+              <h1 className='text-xl lg:text-2xl mt-4 font-medium'>
                 {product.name}
               </h1>
-              <p className='text-gray-600 font-semibold uppercase font-syne text-sm pt-1'>
+              <p className='text-gray-700 font-semibold uppercase font-syne text-sm'>
                 {product.brand}
               </p>
             </div>
 
-            <div className='text-xl lg:text-2xl my-2 sm:my-4 text-gray-800 font-semibold'>
+            <div className='text-xl my-2 sm:my-4 text-gray-800 font-semibold'>
               {product.price} kr
             </div>
-            <div className='flex gap-1 items-center'>
-              <span className='text-gray-600 font-light text-sm'>Färg:</span>
-              <p className='text-gray-950 text-base medium'>
+            <div className='flex items-center gap-1 text-sm '>
+              <span className=' uppercase  font-medium'>Färg:</span>
+              <p className='text-sm text-black font-medium'>
                 {product.color &&
                   product.color.charAt(0).toUpperCase() +
                     product.color.slice(1)}
@@ -112,8 +112,8 @@ export default function product({
             <div className='flex flex-col mt-6 gap-2'>
               <span
                 className={twMerge(
-                  'text-gray-600 font-light text-sm mb-1',
-                  selectedSize ? 'text-green-950 font-medium' : 'text-gray-600'
+                  'text-gray-700 font-medium  uppercase text-xs mb-1',
+                  selectedSize ? 'text-green-950 ' : 'text-gray-800'
                 )}
               >
                 {selectedSize ? `Vald storlek: ${selectedSize}` : 'Storlekar:'}
@@ -150,7 +150,7 @@ export default function product({
                 title='Om produkten'
                 className='text-base font-medium'
               >
-                <p className='text-gray-600 font-normal text-base'>
+                <p className='text-gray-700 font-normal text-base'>
                   {product.description}
                 </p>
               </AccordionSection>
@@ -162,7 +162,7 @@ export default function product({
                 {product.specs.map((spec) => (
                   <span
                     key={spec}
-                    className='text-gray-600 text-base font-normal flex items-center'
+                    className='text-gray-700 text-base font-normal flex items-center'
                   >
                     <Dot size={22} className='text-black' />
                     {spec}
@@ -180,7 +180,7 @@ export default function product({
                     Gratis frakt och snabb leverans
                   </h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
+                <p className='text-sm text-gray-700 pl-10 lg:pr-12'>
                   Gäller för beställningar över 499 kr. Leverans inom 2-3
                   arbetsdagar.
                 </p>
@@ -193,7 +193,7 @@ export default function product({
                     Enkla byten av presenter
                   </h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
+                <p className='text-sm text-gray-700 pl-10 lg:pr-12'>
                   Logga in och skapa ett presentkvitto.
                 </p>
               </div>
@@ -203,7 +203,7 @@ export default function product({
                   <RefreshCcw size={25} strokeWidth={1.25} />
                   <h3 className='font-medium text-gray-900'>Enkla returer</h3>
                 </div>
-                <p className='text-sm text-gray-600 pl-10 lg:pr-12'>
+                <p className='text-sm text-gray-700 pl-10 lg:pr-12'>
                   Vi erbjuder enkla kostnadsfria returer inom 30 dagar.
                 </p>
               </div>
@@ -212,10 +212,10 @@ export default function product({
         </div>
       </div>
       <div className=' px-6 lg:px-10 lg:w-[65%]'>
-        <h5 className='uppercase text-base lg:text-lg  mb-0.5 font-semibold'>
+        <h5 className='uppercase text-base   mb-1 font-semibold'>
           Beskrivning
         </h5>
-        <p className='text-gray-700 font-normal text-base lg:text-lg  '>
+        <p className='text-gray-800 font-normal text-base   '>
           {product.description}
         </p>
       </div>
