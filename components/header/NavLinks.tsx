@@ -32,7 +32,7 @@ const navLinks: NavLink[] = [
     title: 'Herr',
     href: '/c/herr',
     subLinks: [
-      {title: 'SKJORTOR', href: '/c/herr/overshirt'},
+      {title: 'OVERSHIRT', href: '/c/herr/overshirt'},
       {title: 'BYXOR', href: '/c/herr/byxor'},
       {title: 'JACKOR', href: '/c/herr/jackor'},
       {title: 'T-SHIRTS', href: '/c/herr/t-shirts'},
