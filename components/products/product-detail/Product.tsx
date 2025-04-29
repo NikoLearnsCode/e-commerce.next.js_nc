@@ -85,7 +85,7 @@ export default function product({
           </div>
 
           {/* Right column - product info */}
-          <div className='flex flex-col lg:pt-16 px-6 lg:mr-12 sticky top-18 h-full  sm:px-5 gap-3 lg:gap-1 mb-12  lg:w-[40%] transition-all duration-300'>
+          <div className='flex flex-col lg:pt-16 px-6 lg:mr-12 sticky top-18 h-full  sm:px-5 gap-3 lg:gap-1 mb-12  lg:w-[35%] transition-all duration-300'>
             {/* Product name */}
             <div>
               <h1 className='text-xl lg:text-2xl mt-4 font-medium'>

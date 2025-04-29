@@ -9,10 +9,10 @@ export default function Homepage() {
   const [currentView, setCurrentView] = useState<'dam' | 'herr'>('dam');
 
 
-  const damDesktopImage = '/images/LP.DAM.webp';
-  const herrDesktopImage = '/images/LP.HERR.webp';
-  const damMobileImage = '/images/LP.DAM.MOBILE.jpg';
-  const herrMobileImage = '/images/LP.HERR.MOBILE.jpg';
+  const damDesktopImage = '/images/LP.DAM.avif';
+  const herrDesktopImage = '/images/LP.HERR.avif';
+  const damMobileImage = '/images/LP.DAM.MOBILE.avif';
+  const herrMobileImage = '/images/LP.HERR.MOBILE.avif';
 
   const handlers = useSwipeable({
     onSwipedLeft: () => setCurrentView('herr'),
