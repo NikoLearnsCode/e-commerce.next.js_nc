@@ -120,6 +120,7 @@ export default function ProductCard({
                       src={imgSrc}
                       alt={`${product.name} - bild ${idx + 1}`}
                       fill
+                      quality={100}
                       priority={priorityLoading && idx === 0}
                       loading={priorityLoading && idx === 0 ? 'eager' : 'lazy'}
                       className='object-cover h-full w-full'
@@ -159,6 +160,7 @@ export default function ProductCard({
             )}
           </>
         ) : (
+          // Fallback
           <Link
             href={`/${product.slug}`}
             className='block relative aspect-[7/9] h-full w-full'
