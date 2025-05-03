@@ -1,8 +1,8 @@
 // Ladda miljövariabler från .env.local
 import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+dotenv.config({path: '.env.local'});
 
-import { createClient } from '@supabase/supabase-js';
+import {createClient} from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -63,34 +63,34 @@ const baseProducts = [
       'Tål ej strykning',
     ],
     images: [
-      '/images/herr/jackor/rock1.webp',
-      '/images/herr/jackor/rock2.webp',
-      '/images/herr/jackor/rock1.webp',
-      '/images/herr/jackor/rock2.webp',
+      '/images/herr/jackor/jacka-herr1.avif',
+      '/images/herr/jackor/jacka-herr2.avif',
+      '/images/herr/jackor/jacka-herr3.avif',
+      '/images/herr/jackor/jacka-herr1.avif',
     ],
     sizes: ['44', '46', '48', '50', '52'],
   },
   // Overshirt
   {
-    name: 'Flanell Overshirt',
+    name: 'Linen Overshirt',
     description:
-      'Mjuk och varm flanellskjorta i robust kvalitet. Perfekt som ett extra lager under kyligare dagar.',
+      'Mjuk och varm linenskjorta i robust kvalitet. Perfekt för varmare dagar.',
     price: 1799,
     brand: 'Trekano',
     gender: 'herr',
     color: 'brown',
-    slug: 'flanell-overshirt',
+    slug: 'linen-overshirt',
     category: 'overshirt',
     specs: [
       'Normal passform',
-      'Material: 100% bomull',
+      'Material: 100% linne',
       'Maskintvätt högst 30°C',
       'Tål ej strykning',
     ],
     images: [
-      '/images/herr/overshirt/overshirt2.webp',
       '/images/herr/overshirt/overshirt1.webp',
-      '/images/herr/overshirt/overshirt2.webp',
+      '/images/herr/overshirt/overshirt2.avif',
+      '/images/herr/overshirt/overshirt3.avif',
       '/images/herr/overshirt/overshirt1.webp',
     ],
     sizes: ['44', '46', '48', '50', '52', '54'],
@@ -147,7 +147,6 @@ const baseProducts = [
       '/images/dam/byxor/byxor-dam3.webp',
       '/images/dam/byxor/byxor-dam2.webp',
       '/images/dam/byxor/byxor-dam1.webp',
-     
     ],
     sizes: ['32', '34', '36', '38', '40', '42', '44'],
   },
@@ -219,7 +218,8 @@ const baseProducts = [
       'Maskintvätt högst 30°C',
       'Tål strykning',
     ],
-    images: ['/images/dam/toppar/topp1.webp',
+    images: [
+      '/images/dam/toppar/topp1.webp',
       '/images/dam/toppar/topp2.webp',
       '/images/dam/toppar/topp1.webp',
       '/images/dam/toppar/topp2.webp',
@@ -231,14 +231,14 @@ const baseProducts = [
 // Funktion för att hämta befintliga produkter
 async function getExistingProductsInfo() {
   // Hämta alla befintliga slug och name värden
-  const { data, error } = await supabase
+  const {data, error} = await supabase
     .from('products')
     .select('slug, name')
-    .order('created_at', { ascending: false });
+    .order('created_at', {ascending: false});
 
   if (error) {
     console.error('Fel vid hämtning av befintliga produkter:', error);
-    return { slugs: [], names: [], highestIndex: 0 };
+    return {slugs: [], names: [], highestIndex: 0};
   }
 
   // Extrahera unika slugs och names
@@ -257,7 +257,7 @@ async function getExistingProductsInfo() {
     }
   });
 
-  return { slugs, names, highestIndex };
+  return {slugs, names, highestIndex};
 }
 
 // Funktion som skapar en ny produkt baserat på originalet med unika värden
@@ -366,7 +366,7 @@ async function seedProducts(count: number = 50) {
   }
 
   // Spara produkter i databasen
-  const { data, error } = await supabase
+  const {data, error} = await supabase
     .from('products')
     .insert(productRows)
     .select();
