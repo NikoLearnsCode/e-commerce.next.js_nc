@@ -65,6 +65,7 @@ export default function ProductCard({
               src={product.images[0]}
               alt={product.name}
               fill
+              quality={100}
               priority={priorityLoading}
               loading={priorityLoading ? 'eager' : 'lazy'}
               className='object-cover h-full w-full'

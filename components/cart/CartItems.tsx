@@ -139,6 +139,7 @@ export default function CartItems({compact = false}: CartItemsProps) {
                       src={item.images[0]}
                       alt={item.name}
                       fill
+                      quality={100}
                       priority
                       className='object-cover  w-full h-full '
                     />

@@ -9,7 +9,7 @@ import Newsletter from '@/components/shared/Newsletter';
 
 import MobileImageSwiper from './MobileImageSwiper';
 import dynamic from 'next/dynamic';
-import {Dot} from 'lucide-react';
+
 
 // Dynamically import the carousels
 const ProductCarousel = dynamic(
@@ -67,7 +67,7 @@ export default function product({
                         src={img}
                         alt={`${product.name} - bild ${idx + 1}`}
                         fill
-                        quality={90}
+                        quality={100}
                         sizes='(min-width: 1024px) 30vw, 0vw'
                         priority={true}
                         loading='eager'
